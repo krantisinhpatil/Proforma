@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartnerType" Type="varchar(max)" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="500" />
+    <Property Name="StreetAddress" Type="varchar(max)" />
+    <Property Name="City" Type="varchar(max)" />
+    <Property Name="State" Type="varchar(max)" />
+    <Property Name="ZipCode" Type="varchar(max)" />
+    <Property Name="Phone1" Type="varchar(max)" />
+    <Property Name="Phone2" Type="varchar(max)" />
+    <Property Name="Fax" Type="varchar(max)" />
+    <Property Name="Website" Type="varchar(max)" />
+    <Property Name="FTPSite" Type="varchar(max)" Nullable="false" />
+    <Property Name="ArtEmail" Type="varchar(max)" />
+    <Property Name="OrderEmail" Type="varchar(max)" />
+    <Property Name="FOBPointInCanada" Type="varchar(max)" />
+    <Property Name="QuoteinCanadianDollars" Type="varchar(max)" />
+    <Property Name="PrimaryContactName" Type="varchar(max)" />
+    <Property Name="PrimaryContactEmail" Type="varchar(max)" />
+    <Property Name="PrimaryContactExtension" Type="varchar(max)" />
+    <Property Name="PrimaryContactDirectLine" Type="varchar(max)" />
+    <Property Name="SecondaryContactName" Type="varchar(max)" />
+    <Property Name="SecondaryContactEmail" Type="varchar(max)" />
+    <Property Name="SecondaryContactExtension" Type="varchar(max)" />
+    <Property Name="SecondaryContactDirectLine" Type="varchar(max)" />
+    <Property Name="TradeOnly" Type="varchar(max)" />
+    <Property Name="Union" Type="varchar(max)" />
+    <Property Name="ASI" Type="varchar(max)" />
+    <Property Name="PPAI" Type="varchar(max)" />
+    <Property Name="PPPC" Type="varchar(max)" />
+    <Property Name="SAGE" Type="varchar(max)" />
+    <Property Name="UPIC" Type="varchar(max)" />
+    <Property Name="Certifications" Type="varchar(max)" />
+    <Property Name="MinorityOwned" Type="varchar(max)" />
+    <Property Name="ProformaPricing" Type="varchar(max)" />
+    <Property Name="ProformaPrograms" Type="varchar(max)" />
+    <Property Name="ProductsNCapabilities" Type="varchar(max)" />
+    <Property Name="Rushor24hour" Type="varchar(max)" />
+    <Property Name="CategoryId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Company_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Company_Category" Association="Self.FK_Company_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

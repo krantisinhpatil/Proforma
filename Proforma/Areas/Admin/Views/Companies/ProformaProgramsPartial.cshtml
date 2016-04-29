@@ -1,0 +1,46 @@
+﻿@model Proforma.Areas.Admin.ViewModels.ProformaProgramModel
+
+<div role="tabpanel" class="tab-pane" id="ProformaProgramsSpecials">
+    <div class="general-info-wrap prd-cap-wrap padding-btn-0">
+        <form id="frmProformaPrograms">
+            <ul class="general-info-from-wrap padding-btn-40 clearfix">
+                <li>
+                        @Html.HiddenFor(model => model.CompanyId)
+                        <div class="field-group">
+                            <label class="field-label">Proforma Program</label>
+                            <input type="hidden" id="ProformaProgramId" value="0" />
+                            @Html.TextAreaFor(model => model.Name, new { @id= "ProformaProgramName" })
+                            @*<input type="button" id="btnProformaPrograms" class="add-btn" value="Add" />*@
+                            <a id="btnProformaPrograms" class="add-btn">Save</a>
+                        </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="prd-cap-list-wrap events-list-wrap">
+        <ul id="lstProformaPrograms">
+            <li>
+                <ul class="prd-cap-list-hdr">
+                    <li style="border-right:none;">Description</li>
+                </ul>
+            </li>
+            @if (Model.lstProformaProgram.Count() > 0)
+            {
+                foreach (var item in Model.lstProformaProgram)
+                {
+                    var EditId = "editProgram" + item.ProformaProgramId;
+                    var DeleteId = "deleteProgram" + item.ProformaProgramId;
+                    var DescId = "ProgramDetails" + item.ProformaProgramId;
+                    var prodId = "ProformaProgram" + item.ProformaProgramId;
+                    <li id="@prodId">
+                        <ul class="prd-cap-list-dtl">
+                            <li id="@DescId">@item.Name</li>
+                            <li><a id="@DeleteId" onclick="fnDeleteProformaProgram(this)" class="crud-icons"><img src="~/Content/images/delete-icon.png" alt="Delete"></a></li>
+                            <li><a id="@EditId" onclick="fnEditProformaProgram(this)" class="crud-icons"><img src="~/Content/images/edit-icon.png" alt="Edit"></a></li>
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

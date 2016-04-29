@@ -1,0 +1,108 @@
+﻿<style>
+    .file-upload {
+        width: 413px;
+    }
+</style>
+<div role="tabpanel" class="tab-pane" id="proexclusives">
+    <div class="general-info-wrap prd-cap-wrap padding-btn-0">
+        <ul class="general-info-from-wrap padding-btn-40 clearfix">
+            <li>
+                <div class="field-group">
+                    <a id="btnGoToNewEvent" class="event-add-btn">Add New PDF</a>
+                    <a id="btnBackToEvent" class="event-add-btn" style="display:none;">Back To Events</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="prd-cap-list-wrap events-list-wrap" id="EventListingdiv">
+        <ul id="lstProformaEvents">
+            <li>
+                <ul class="prd-cap-list-hdr">
+                    <li>Image</li>
+                    <li>Company Name</li>
+                    <li>PDF Title</li>
+                    <li></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="prd-cap-list-dtl">
+                    <li><img src="" /></li>
+                    <li>4Over</li>
+                    <li>Plastic Cards</li>
+                    <li><a><img src="~/Content/images/delete-icon.png" alt="Delete"></a></li>
+                    <li><a><img src="~/Content/images/edit-icon.png" alt="Edit"></a></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="prd-cap-list-dtl">
+                    <li><img src="" /></li>
+                    <li>4Over</li>
+                    <li>Plastic Cards</li>
+                    <li><a><img src="~/Content/images/delete-icon.png" alt="Delete"></a></li>
+                    <li><a><img src="~/Content/images/edit-icon.png" alt="Edit"></a></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="prd-cap-list-dtl">
+                    <li><img src="" /></li>
+                    <li>4Over</li>
+                    <li>Plastic Cards</li>
+                    <li><a><img src="~/Content/images/delete-icon.png" alt="Delete"></a></li>
+                    <li><a><img src="~/Content/images/edit-icon.png" alt="Edit"></a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="general-info-wrap padding-btn-0" style="display:none;">
+        <form id="frmAddPDF" method="post">
+            <ul class="general-info-from-wrap">
+                <li>
+                    <div class="field-group file-upload lg" style="height: 347px;">
+                        <input type="file" id="fileUploadPro" name="fileUploadPro" accept="image/*" />
+                        <a href="javascript:void(0);" class="upload-logo">Upload logo</a>
+                        <span>754 x 276 pxl</span>
+                    </div>
+                    <div class="field-group lg">
+                        <ul style="list-style:none;">
+                            <li>
+                                <div class="field-group lg">
+                                    <label class="field-label">Company Name</label>
+                                    <input type="text" name="ProExclusiveCompanyName" id="ProExclusiveCompanyName" value="" placeholder="">
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="field-group lg">
+                                    <div class="field-group lg">
+                                        <label class="field-label">PDF Title</label>
+                                        <input type="text" name="ProExclusivePDFTitle" id="ProExclusivePDFTitle" value="" placeholder="">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="field-label">Expiration Date</label>
+                                <div class="field-group md date-wrap">
+                                    <div class="field-group lg">                                       
+                                        <div class='input-group date' id='ExpirationDate'>
+                                            <input type='text' class="form-control" />
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="field-group submit-wrap">
+                                    <a id="btnAddPDF" class="event-add-btn">Add ProExclusive PDF</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>

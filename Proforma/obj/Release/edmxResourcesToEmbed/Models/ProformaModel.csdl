@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ProformaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Model.Category" />
+    <EntitySet Name="Companies" EntityType="Model.Company" />
+    <AssociationSet Name="FK_Company_Category" Association="Model.FK_Company_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <EntitySet Name="FilterCriterias" EntityType="Model.FilterCriteria" />
+    <AssociationSet Name="FK_FilterCriteria_Category" Association="Model.FK_FilterCriteria_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="FilterCriteria" EntitySet="FilterCriterias" />
+    </AssociationSet>
+    <EntitySet Name="CompanyMetas" EntityType="Model.CompanyMeta" />
+    <AssociationSet Name="FK_CompanyMeta_Company" Association="Model.FK_CompanyMeta_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="CompanyMeta" EntitySet="CompanyMetas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyMeta_FilterCriteria" Association="Model.FK_CompanyMeta_FilterCriteria">
+      <End Role="FilterCriteria" EntitySet="FilterCriterias" />
+      <End Role="CompanyMeta" EntitySet="CompanyMetas" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="Model.User" />
+    <EntitySet Name="Events" EntityType="Model.Event" />
+    <EntitySet Name="Notifications" EntityType="Model.Notification" />
+    <EntitySet Name="SPDevTeams" EntityType="Model.SPDevTeam" />
+    <EntitySet Name="SupportCenterContacts" EntityType="Model.SupportCenterContact" />
+    <EntitySet Name="TermsConditions" EntityType="Model.TermsCondition" />
+    <EntitySet Name="UserNotifications" EntityType="Model.UserNotification" />
+    <AssociationSet Name="FK_UserNotification_Notification" Association="Model.FK_UserNotification_Notification">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="UserNotification" EntitySet="UserNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserNotification_Notification1" Association="Model.FK_UserNotification_Notification1">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="UserNotification" EntitySet="UserNotifications" />
+    </AssociationSet>
+    <EntitySet Name="SPDevTeamMembers" EntityType="Model.SPDevTeamMember" />
+    <EntitySet Name="ProformaGeneralSettings" EntityType="Model.ProformaGeneralSetting" />
+    <EntitySet Name="Feedbacks" EntityType="Model.Feedback" />
+    <EntitySet Name="UserFavorites" EntityType="Model.UserFavorite" />
+    <EntitySet Name="ProductsCapabilities" EntityType="Model.ProductsCapability" />
+    <EntitySet Name="ProformaPrograms" EntityType="Model.ProformaProgram" />
+    <AssociationSet Name="FK_ProductsCapability_Company" Association="Model.FK_ProductsCapability_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="ProductsCapability" EntitySet="ProductsCapabilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProformaProgram_Company" Association="Model.FK_ProformaProgram_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="ProformaProgram" EntitySet="ProformaPrograms" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Companies" Relationship="Model.FK_Company_Category" FromRole="Category" ToRole="Company" />
+    <NavigationProperty Name="FilterCriterias" Relationship="Model.FK_FilterCriteria_Category" FromRole="Category" ToRole="FilterCriteria" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartnerType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FTPSite" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ArtEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OrderEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FOBPointInCanada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="QuoteinCanadianDollars" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactExtension" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactDirectLine" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactExtension" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactDirectLine" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TradeOnly" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Union" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ASI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PPAI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PPPC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SAGE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UPIC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Certifications" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MinorityOwned" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ProformaPricing" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ProformaPrograms" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductsNCapabilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rushor24hour" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Model.FK_Company_Category" FromRole="Company" ToRole="Category" />
+    <NavigationProperty Name="CompanyMetas" Relationship="Model.FK_CompanyMeta_Company" FromRole="Company" ToRole="CompanyMeta" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="Decimal" Precision="12" Scale="9" />
+    <Property Name="Longitude" Type="Decimal" Precision="12" Scale="9" />
+    <NavigationProperty Name="ProductsCapabilities" Relationship="Model.FK_ProductsCapability_Company" FromRole="Company" ToRole="ProductsCapability" />
+    <NavigationProperty Name="ProformaPrograms1" Relationship="Model.FK_ProformaProgram_Company" FromRole="Company" ToRole="ProformaProgram" />
+  </EntityType>
+  <Association Name="FK_Company_Category">
+    <End Type="Model.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="Model.Company" Role="Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FilterCriteria">
+    <Key>
+      <PropertyRef Name="FilterCriteriaId" />
+    </Key>
+    <Property Name="FilterCriteriaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="CriteriaText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Category" Relationship="Model.FK_FilterCriteria_Category" FromRole="FilterCriteria" ToRole="Category" />
+    <NavigationProperty Name="CompanyMetas" Relationship="Model.FK_CompanyMeta_FilterCriteria" FromRole="FilterCriteria" ToRole="CompanyMeta" />
+  </EntityType>
+  <Association Name="FK_FilterCriteria_Category">
+    <End Type="Model.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="Model.FilterCriteria" Role="FilterCriteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="FilterCriteria">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CompanyMeta">
+    <Key>
+      <PropertyRef Name="CompanyMetaId" />
+    </Key>
+    <Property Name="CompanyMetaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="FilterCriteriaId" Type="Int32" />
+    <NavigationProperty Name="Company" Relationship="Model.FK_CompanyMeta_Company" FromRole="CompanyMeta" ToRole="Company" />
+    <NavigationProperty Name="FilterCriteria" Relationship="Model.FK_CompanyMeta_FilterCriteria" FromRole="CompanyMeta" ToRole="FilterCriteria" />
+  </EntityType>
+  <Association Name="FK_CompanyMeta_Company">
+    <End Type="Model.Company" Role="Company" Multiplicity="0..1" />
+    <End Type="Model.CompanyMeta" Role="CompanyMeta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="CompanyMeta">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyMeta_FilterCriteria">
+    <End Type="Model.FilterCriteria" Role="FilterCriteria" Multiplicity="0..1" />
+    <End Type="Model.CompanyMeta" Role="CompanyMeta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FilterCriteria">
+        <PropertyRef Name="FilterCriteriaId" />
+      </Principal>
+      <Dependent Role="CompanyMeta">
+        <PropertyRef Name="FilterCriteriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Salt" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="TempPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TempPassActiveTill" Type="DateTime" Precision="3" />
+    <Property Name="DeviceType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceToken" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int64" />
+    <Property Name="EventSubHeading" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NotificationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CretedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <NavigationProperty Name="UserNotification" Relationship="Model.FK_UserNotification_Notification" FromRole="Notification" ToRole="UserNotification" />
+    <NavigationProperty Name="UserNotifications" Relationship="Model.FK_UserNotification_Notification1" FromRole="Notification" ToRole="UserNotification" />
+  </EntityType>
+  <EntityType Name="SPDevTeam">
+    <Key>
+      <PropertyRef Name="SPDevTeamID" />
+    </Key>
+    <Property Name="SPDevTeamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrimaryContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SupportCenterContact">
+    <Key>
+      <PropertyRef Name="SupportCenterContactId" />
+    </Key>
+    <Property Name="SupportCenterContactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrimaryContactNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="FacebookURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TwitterURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="LinkedInURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TermsCondition">
+    <Key>
+      <PropertyRef Name="TermsConditionId" />
+    </Key>
+    <Property Name="TermsConditionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TCText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserNotification">
+    <Key>
+      <PropertyRef Name="UserNotificationId" />
+    </Key>
+    <Property Name="UserNotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="NotificationId" Type="Int64" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Notification" Relationship="Model.FK_UserNotification_Notification" FromRole="UserNotification" ToRole="Notification" />
+    <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int64" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Notification1" Relationship="Model.FK_UserNotification_Notification1" FromRole="UserNotification" ToRole="Notification" />
+  </EntityType>
+  <Association Name="FK_UserNotification_Notification">
+    <End Type="Model.Notification" Role="Notification" Multiplicity="1" />
+    <End Type="Model.UserNotification" Role="UserNotification" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="NotificationId" />
+      </Principal>
+      <Dependent Role="UserNotification">
+        <PropertyRef Name="UserNotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserNotification_Notification1">
+    <End Type="Model.Notification" Role="Notification" Multiplicity="0..1" />
+    <End Type="Model.UserNotification" Role="UserNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="NotificationId" />
+      </Principal>
+      <Dependent Role="UserNotification">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SPDevTeamMember">
+    <Key>
+      <PropertyRef Name="SPDevTeamMemberID" />
+    </Key>
+    <Property Name="SPDevTeamMemberID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ProformaGeneralSetting">
+    <Key>
+      <PropertyRef Name="ProformaGeneralSettingId" />
+    </Key>
+    <Property Name="ProformaGeneralSettingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="FeedBackID" />
+    </Key>
+    <Property Name="FeedBackID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FeedBackText" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Rating" Type="Double" />
+  </EntityType>
+  <EntityType Name="UserFavorite">
+    <Key>
+      <PropertyRef Name="UserFavoriteId" />
+    </Key>
+    <Property Name="UserFavoriteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProductsCapability">
+    <Key>
+      <PropertyRef Name="ProductsCapabilityId" />
+    </Key>
+    <Property Name="ProductsCapabilityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Model.FK_ProductsCapability_Company" FromRole="ProductsCapability" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="ProformaProgram">
+    <Key>
+      <PropertyRef Name="ProformaProgramId" />
+    </Key>
+    <Property Name="ProformaProgramId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Model.FK_ProformaProgram_Company" FromRole="ProformaProgram" ToRole="Company" />
+  </EntityType>
+  <Association Name="FK_ProductsCapability_Company">
+    <End Type="Model.Company" Role="Company" Multiplicity="1" />
+    <End Type="Model.ProductsCapability" Role="ProductsCapability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="ProductsCapability">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProformaProgram_Company">
+    <End Type="Model.Company" Role="Company" Multiplicity="1" />
+    <End Type="Model.ProformaProgram" Role="ProformaProgram" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="ProformaProgram">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

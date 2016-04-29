@@ -1,0 +1,9 @@
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Release\DAL.Proforma.dll.config
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Release\DAL.Proforma.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Release\DAL.Proforma.pdb
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Release\EntityFramework.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Release\EntityFramework.SqlServer.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Release\EntityFramework.xml
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Release\EntityFramework.SqlServer.xml
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\obj\Release\DAL.Proforma.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\obj\Release\DAL.Proforma.pdb

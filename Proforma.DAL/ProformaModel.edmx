@@ -1,0 +1,945 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="PartnerType" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="500" />
+          <Property Name="StreetAddress" Type="varchar" MaxLength="500" />
+          <Property Name="City" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="Phone1" Type="varchar" MaxLength="50" />
+          <Property Name="Phone2" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="Website" Type="varchar" MaxLength="250" />
+          <Property Name="FTPSite" Type="varchar" MaxLength="250" />
+          <Property Name="ArtEmail" Type="varchar" MaxLength="250" />
+          <Property Name="OrderEmail" Type="varchar" MaxLength="250" />
+          <Property Name="FOBPointInCanada" Type="varchar" MaxLength="50" />
+          <Property Name="QuoteinCanadianDollars" Type="varchar" MaxLength="50" />
+          <Property Name="PrimaryContactName" Type="varchar" MaxLength="1000" />
+          <Property Name="PrimaryContactEmail" Type="varchar" MaxLength="250" />
+          <Property Name="PrimaryContactExtension" Type="varchar" MaxLength="100" />
+          <Property Name="PrimaryContactDirectLine" Type="varchar" MaxLength="100" />
+          <Property Name="SecondaryContactName" Type="varchar" MaxLength="1000" />
+          <Property Name="SecondaryContactEmail" Type="varchar" MaxLength="500" />
+          <Property Name="SecondaryContactExtension" Type="varchar" MaxLength="500" />
+          <Property Name="SecondaryContactDirectLine" Type="varchar" MaxLength="100" />
+          <Property Name="TradeOnly" Type="varchar" MaxLength="150" />
+          <Property Name="Union" Type="varchar" MaxLength="100" />
+          <Property Name="ASI" Type="varchar" MaxLength="100" />
+          <Property Name="PPAI" Type="varchar" MaxLength="100" />
+          <Property Name="PPPC" Type="varchar" MaxLength="100" />
+          <Property Name="SAGE" Type="varchar" MaxLength="100" />
+          <Property Name="UPIC" Type="varchar" MaxLength="100" />
+          <Property Name="Certifications" Type="varchar" MaxLength="500" />
+          <Property Name="MinorityOwned" Type="varchar" MaxLength="200" />
+          <Property Name="ProformaPricing" Type="varchar" MaxLength="500" />
+          <Property Name="ProformaPrograms" Type="varchar(max)" />
+          <Property Name="ProductsNCapabilities" Type="varchar(max)" />
+          <Property Name="Rushor24hour" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="9" />
+        </EntityType>
+        <EntityType Name="CompanyMeta">
+          <Key>
+            <PropertyRef Name="CompanyMetaId" />
+          </Key>
+          <Property Name="CompanyMetaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="FilterCriteriaId" Type="int" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventTitle" Type="varchar" MaxLength="250" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
+          <Property Name="EventSubHeading" Type="varchar" MaxLength="1000" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedBackID" />
+          </Key>
+          <Property Name="FeedBackID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeedBackText" Type="varchar" MaxLength="1000" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="Rating" Type="float" />
+        </EntityType>
+        <EntityType Name="FilterCriteria">
+          <Key>
+            <PropertyRef Name="FilterCriteriaId" />
+          </Key>
+          <Property Name="FilterCriteriaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="CriteriaText" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="NotificationType" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="CretedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ProductsCapability">
+          <Key>
+            <PropertyRef Name="ProductsCapabilityId" />
+          </Key>
+          <Property Name="ProductsCapabilityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProformaGeneralSettings">
+          <Key>
+            <PropertyRef Name="ProformaGeneralSettingId" />
+          </Key>
+          <Property Name="ProformaGeneralSettingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProformaProgram">
+          <Key>
+            <PropertyRef Name="ProformaProgramId" />
+          </Key>
+          <Property Name="ProformaProgramId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SPDevTeam">
+          <Key>
+            <PropertyRef Name="SPDevTeamID" />
+          </Key>
+          <Property Name="SPDevTeamID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrimaryContactNumber" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SPDevTeamMember">
+          <Key>
+            <PropertyRef Name="SPDevTeamMemberID" />
+          </Key>
+          <Property Name="SPDevTeamMemberID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Title" Type="varchar" MaxLength="1000" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="Extension" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SupportCenterContact">
+          <Key>
+            <PropertyRef Name="SupportCenterContactId" />
+          </Key>
+          <Property Name="SupportCenterContactId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrimaryContactNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="Address" Type="varchar" MaxLength="1000" />
+          <Property Name="FacebookURL" Type="varchar" MaxLength="500" />
+          <Property Name="TwitterURL" Type="varchar" MaxLength="500" />
+          <Property Name="LinkedInURL" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TermsCondition">
+          <Key>
+            <PropertyRef Name="TermsConditionId" />
+          </Key>
+          <Property Name="TermsConditionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TCText" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserFavorite">
+          <Key>
+            <PropertyRef Name="UserFavoriteId" />
+          </Key>
+          <Property Name="UserFavoriteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserNotification">
+          <Key>
+            <PropertyRef Name="UserNotificationId" />
+          </Key>
+          <Property Name="UserNotificationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="NotificationId" Type="bigint" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="ReceivedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="Salt" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="TempPassword" Type="varchar" MaxLength="500" />
+          <Property Name="TempPassActiveTill" Type="datetime" />
+          <Property Name="DeviceType" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeviceToken" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_Company_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyMeta_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyMeta" Type="Self.CompanyMeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CompanyMeta">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyMeta_FilterCriteria">
+          <End Role="FilterCriteria" Type="Self.FilterCriteria" Multiplicity="0..1" />
+          <End Role="CompanyMeta" Type="Self.CompanyMeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilterCriteria">
+              <PropertyRef Name="FilterCriteriaId" />
+            </Principal>
+            <Dependent Role="CompanyMeta">
+              <PropertyRef Name="FilterCriteriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsCapability_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ProductsCapability" Type="Self.ProductsCapability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="ProductsCapability">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProformaProgram_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ProformaProgram" Type="Self.ProformaProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="ProformaProgram">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserNotification_Notification">
+          <End Role="Notification" Type="Self.Notification" Multiplicity="0..1" />
+          <End Role="UserNotification" Type="Self.UserNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification">
+              <PropertyRef Name="NotificationId" />
+            </Principal>
+            <Dependent Role="UserNotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyMeta" EntityType="Self.CompanyMeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FilterCriteria" EntityType="Self.FilterCriteria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsCapability" EntityType="Self.ProductsCapability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProformaGeneralSettings" EntityType="Self.ProformaGeneralSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProformaProgram" EntityType="Self.ProformaProgram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SPDevTeam" EntityType="Self.SPDevTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SPDevTeamMember" EntityType="Self.SPDevTeamMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupportCenterContact" EntityType="Self.SupportCenterContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TermsCondition" EntityType="Self.TermsCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFavorite" EntityType="Self.UserFavorite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserNotification" EntityType="Self.UserNotification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Company_Category" Association="Self.FK_Company_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyMeta_Company" Association="Self.FK_CompanyMeta_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyMeta" EntitySet="CompanyMeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyMeta_FilterCriteria" Association="Self.FK_CompanyMeta_FilterCriteria">
+            <End Role="FilterCriteria" EntitySet="FilterCriteria" />
+            <End Role="CompanyMeta" EntitySet="CompanyMeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsCapability_Company" Association="Self.FK_ProductsCapability_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ProductsCapability" EntitySet="ProductsCapability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProformaProgram_Company" Association="Self.FK_ProformaProgram_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ProformaProgram" EntitySet="ProformaProgram" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserNotification_Notification" Association="Self.FK_UserNotification_Notification">
+            <End Role="Notification" EntitySet="Notification" />
+            <End Role="UserNotification" EntitySet="UserNotification" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_Company_Category" FromRole="Category" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="PartnerType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FTPSite" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ArtEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OrderEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FOBPointInCanada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QuoteinCanadianDollars" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactExtension" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactDirectLine" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactExtension" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactDirectLine" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TradeOnly" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Union" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ASI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PPAI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PPPC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SAGE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UPIC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Certifications" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MinorityOwned" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ProformaPricing" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProformaPrograms" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProductsNCapabilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Rushor24hour" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="9" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Company_Category" FromRole="Company" ToRole="Category" />
+          <NavigationProperty Name="CompanyMetas" Relationship="Self.FK_CompanyMeta_Company" FromRole="Company" ToRole="CompanyMeta" />
+          <NavigationProperty Name="ProductsCapabilities" Relationship="Self.FK_ProductsCapability_Company" FromRole="Company" ToRole="ProductsCapability" />
+          <NavigationProperty Name="ProformaPrograms1" Relationship="Self.FK_ProformaProgram_Company" FromRole="Company" ToRole="ProformaProgram" />
+        </EntityType>
+        <EntityType Name="CompanyMeta">
+          <Key>
+            <PropertyRef Name="CompanyMetaId" />
+          </Key>
+          <Property Name="CompanyMetaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" />
+          <Property Name="FilterCriteriaId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CompanyMeta_Company" FromRole="CompanyMeta" ToRole="Company" />
+          <NavigationProperty Name="FilterCriteria" Relationship="Self.FK_CompanyMeta_FilterCriteria" FromRole="CompanyMeta" ToRole="FilterCriteria" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EventSubHeading" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedBackID" />
+          </Key>
+          <Property Name="FeedBackID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeedBackText" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rating" Type="Double" />
+        </EntityType>
+        <EntityType Name="FilterCriteria">
+          <Key>
+            <PropertyRef Name="FilterCriteriaId" />
+          </Key>
+          <Property Name="FilterCriteriaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="CriteriaText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CompanyMetas" Relationship="Self.FK_CompanyMeta_FilterCriteria" FromRole="FilterCriteria" ToRole="CompanyMeta" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NotificationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CretedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <NavigationProperty Name="UserNotifications" Relationship="Self.FK_UserNotification_Notification" FromRole="Notification" ToRole="UserNotification" />
+        </EntityType>
+        <EntityType Name="ProductsCapability">
+          <Key>
+            <PropertyRef Name="ProductsCapabilityId" />
+          </Key>
+          <Property Name="ProductsCapabilityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_ProductsCapability_Company" FromRole="ProductsCapability" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="ProformaGeneralSetting">
+          <Key>
+            <PropertyRef Name="ProformaGeneralSettingId" />
+          </Key>
+          <Property Name="ProformaGeneralSettingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProformaProgram">
+          <Key>
+            <PropertyRef Name="ProformaProgramId" />
+          </Key>
+          <Property Name="ProformaProgramId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_ProformaProgram_Company" FromRole="ProformaProgram" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="SPDevTeam">
+          <Key>
+            <PropertyRef Name="SPDevTeamID" />
+          </Key>
+          <Property Name="SPDevTeamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrimaryContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SPDevTeamMember">
+          <Key>
+            <PropertyRef Name="SPDevTeamMemberID" />
+          </Key>
+          <Property Name="SPDevTeamMemberID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SupportCenterContact">
+          <Key>
+            <PropertyRef Name="SupportCenterContactId" />
+          </Key>
+          <Property Name="SupportCenterContactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrimaryContactNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TwitterURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedInURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TermsCondition">
+          <Key>
+            <PropertyRef Name="TermsConditionId" />
+          </Key>
+          <Property Name="TermsConditionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TCText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserFavorite">
+          <Key>
+            <PropertyRef Name="UserFavoriteId" />
+          </Key>
+          <Property Name="UserFavoriteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="CompanyId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserNotification">
+          <Key>
+            <PropertyRef Name="UserNotificationId" />
+          </Key>
+          <Property Name="UserNotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="NotificationId" Type="Int64" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Notification" Relationship="Self.FK_UserNotification_Notification" FromRole="UserNotification" ToRole="Notification" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Salt" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="TempPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TempPassActiveTill" Type="DateTime" Precision="3" />
+          <Property Name="DeviceType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceToken" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Company_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyMeta_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyMeta" Type="Self.CompanyMeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="CompanyMeta">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsCapability_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ProductsCapability" Type="Self.ProductsCapability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="ProductsCapability">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProformaProgram_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ProformaProgram" Type="Self.ProformaProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="ProformaProgram">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyMeta_FilterCriteria">
+          <End Role="FilterCriteria" Type="Self.FilterCriteria" Multiplicity="0..1" />
+          <End Role="CompanyMeta" Type="Self.CompanyMeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilterCriteria">
+              <PropertyRef Name="FilterCriteriaId" />
+            </Principal>
+            <Dependent Role="CompanyMeta">
+              <PropertyRef Name="FilterCriteriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserNotification_Notification">
+          <End Role="Notification" Type="Self.Notification" Multiplicity="0..1" />
+          <End Role="UserNotification" Type="Self.UserNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification">
+              <PropertyRef Name="NotificationId" />
+            </Principal>
+            <Dependent Role="UserNotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProformaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="CompanyMetas" EntityType="Self.CompanyMeta" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="FilterCriterias" EntityType="Self.FilterCriteria" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="ProductsCapabilities" EntityType="Self.ProductsCapability" />
+          <EntitySet Name="ProformaGeneralSettings" EntityType="Self.ProformaGeneralSetting" />
+          <EntitySet Name="ProformaPrograms" EntityType="Self.ProformaProgram" />
+          <EntitySet Name="SPDevTeams" EntityType="Self.SPDevTeam" />
+          <EntitySet Name="SPDevTeamMembers" EntityType="Self.SPDevTeamMember" />
+          <EntitySet Name="SupportCenterContacts" EntityType="Self.SupportCenterContact" />
+          <EntitySet Name="TermsConditions" EntityType="Self.TermsCondition" />
+          <EntitySet Name="UserFavorites" EntityType="Self.UserFavorite" />
+          <EntitySet Name="UserNotifications" EntityType="Self.UserNotification" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Company_Category" Association="Self.FK_Company_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyMeta_Company" Association="Self.FK_CompanyMeta_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanyMeta" EntitySet="CompanyMetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsCapability_Company" Association="Self.FK_ProductsCapability_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="ProductsCapability" EntitySet="ProductsCapabilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProformaProgram_Company" Association="Self.FK_ProformaProgram_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="ProformaProgram" EntitySet="ProformaPrograms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyMeta_FilterCriteria" Association="Self.FK_CompanyMeta_FilterCriteria">
+            <End Role="FilterCriteria" EntitySet="FilterCriterias" />
+            <End Role="CompanyMeta" EntitySet="CompanyMetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserNotification_Notification" Association="Self.FK_UserNotification_Notification">
+            <End Role="Notification" EntitySet="Notifications" />
+            <End Role="UserNotification" EntitySet="UserNotifications" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ProformaEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PartnerType" ColumnName="PartnerType" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="FTPSite" ColumnName="FTPSite" />
+                <ScalarProperty Name="ArtEmail" ColumnName="ArtEmail" />
+                <ScalarProperty Name="OrderEmail" ColumnName="OrderEmail" />
+                <ScalarProperty Name="FOBPointInCanada" ColumnName="FOBPointInCanada" />
+                <ScalarProperty Name="QuoteinCanadianDollars" ColumnName="QuoteinCanadianDollars" />
+                <ScalarProperty Name="PrimaryContactName" ColumnName="PrimaryContactName" />
+                <ScalarProperty Name="PrimaryContactEmail" ColumnName="PrimaryContactEmail" />
+                <ScalarProperty Name="PrimaryContactExtension" ColumnName="PrimaryContactExtension" />
+                <ScalarProperty Name="PrimaryContactDirectLine" ColumnName="PrimaryContactDirectLine" />
+                <ScalarProperty Name="SecondaryContactName" ColumnName="SecondaryContactName" />
+                <ScalarProperty Name="SecondaryContactEmail" ColumnName="SecondaryContactEmail" />
+                <ScalarProperty Name="SecondaryContactExtension" ColumnName="SecondaryContactExtension" />
+                <ScalarProperty Name="SecondaryContactDirectLine" ColumnName="SecondaryContactDirectLine" />
+                <ScalarProperty Name="TradeOnly" ColumnName="TradeOnly" />
+                <ScalarProperty Name="Union" ColumnName="Union" />
+                <ScalarProperty Name="ASI" ColumnName="ASI" />
+                <ScalarProperty Name="PPAI" ColumnName="PPAI" />
+                <ScalarProperty Name="PPPC" ColumnName="PPPC" />
+                <ScalarProperty Name="SAGE" ColumnName="SAGE" />
+                <ScalarProperty Name="UPIC" ColumnName="UPIC" />
+                <ScalarProperty Name="Certifications" ColumnName="Certifications" />
+                <ScalarProperty Name="MinorityOwned" ColumnName="MinorityOwned" />
+                <ScalarProperty Name="ProformaPricing" ColumnName="ProformaPricing" />
+                <ScalarProperty Name="ProformaPrograms" ColumnName="ProformaPrograms" />
+                <ScalarProperty Name="ProductsNCapabilities" ColumnName="ProductsNCapabilities" />
+                <ScalarProperty Name="Rushor24hour" ColumnName="Rushor24hour" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyMetas">
+            <EntityTypeMapping TypeName="Model.CompanyMeta">
+              <MappingFragment StoreEntitySet="CompanyMeta">
+                <ScalarProperty Name="CompanyMetaId" ColumnName="CompanyMetaId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="FilterCriteriaId" ColumnName="FilterCriteriaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="Model.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="EventSubHeading" ColumnName="EventSubHeading" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="Model.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="FeedBackID" ColumnName="FeedBackID" />
+                <ScalarProperty Name="FeedBackText" ColumnName="FeedBackText" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilterCriterias">
+            <EntityTypeMapping TypeName="Model.FilterCriteria">
+              <MappingFragment StoreEntitySet="FilterCriteria">
+                <ScalarProperty Name="FilterCriteriaId" ColumnName="FilterCriteriaId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CriteriaText" ColumnName="CriteriaText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="Model.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NotificationType" ColumnName="NotificationType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CretedDate" ColumnName="CretedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsCapabilities">
+            <EntityTypeMapping TypeName="Model.ProductsCapability">
+              <MappingFragment StoreEntitySet="ProductsCapability">
+                <ScalarProperty Name="ProductsCapabilityId" ColumnName="ProductsCapabilityId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProformaGeneralSettings">
+            <EntityTypeMapping TypeName="Model.ProformaGeneralSetting">
+              <MappingFragment StoreEntitySet="ProformaGeneralSettings">
+                <ScalarProperty Name="ProformaGeneralSettingId" ColumnName="ProformaGeneralSettingId" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProformaPrograms">
+            <EntityTypeMapping TypeName="Model.ProformaProgram">
+              <MappingFragment StoreEntitySet="ProformaProgram">
+                <ScalarProperty Name="ProformaProgramId" ColumnName="ProformaProgramId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPDevTeams">
+            <EntityTypeMapping TypeName="Model.SPDevTeam">
+              <MappingFragment StoreEntitySet="SPDevTeam">
+                <ScalarProperty Name="SPDevTeamID" ColumnName="SPDevTeamID" />
+                <ScalarProperty Name="PrimaryContactNumber" ColumnName="PrimaryContactNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPDevTeamMembers">
+            <EntityTypeMapping TypeName="Model.SPDevTeamMember">
+              <MappingFragment StoreEntitySet="SPDevTeamMember">
+                <ScalarProperty Name="SPDevTeamMemberID" ColumnName="SPDevTeamMemberID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportCenterContacts">
+            <EntityTypeMapping TypeName="Model.SupportCenterContact">
+              <MappingFragment StoreEntitySet="SupportCenterContact">
+                <ScalarProperty Name="SupportCenterContactId" ColumnName="SupportCenterContactId" />
+                <ScalarProperty Name="PrimaryContactNumber" ColumnName="PrimaryContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FacebookURL" ColumnName="FacebookURL" />
+                <ScalarProperty Name="TwitterURL" ColumnName="TwitterURL" />
+                <ScalarProperty Name="LinkedInURL" ColumnName="LinkedInURL" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TermsConditions">
+            <EntityTypeMapping TypeName="Model.TermsCondition">
+              <MappingFragment StoreEntitySet="TermsCondition">
+                <ScalarProperty Name="TermsConditionId" ColumnName="TermsConditionId" />
+                <ScalarProperty Name="TCText" ColumnName="TCText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFavorites">
+            <EntityTypeMapping TypeName="Model.UserFavorite">
+              <MappingFragment StoreEntitySet="UserFavorite">
+                <ScalarProperty Name="UserFavoriteId" ColumnName="UserFavoriteId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserNotifications">
+            <EntityTypeMapping TypeName="Model.UserNotification">
+              <MappingFragment StoreEntitySet="UserNotification">
+                <ScalarProperty Name="UserNotificationId" ColumnName="UserNotificationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TempPassword" ColumnName="TempPassword" />
+                <ScalarProperty Name="TempPassActiveTill" ColumnName="TempPassActiveTill" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

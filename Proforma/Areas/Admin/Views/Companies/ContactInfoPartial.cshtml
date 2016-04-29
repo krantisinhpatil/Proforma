@@ -1,0 +1,240 @@
+﻿@model Proforma.Areas.Admin.ViewModels.ContactInfoModel
+
+<div role="tabpanel" class="tab-pane active" id="ContactInfo">    
+    <form id="frmContactInfo">
+        @*@using (Html.BeginForm("ContactInfo", "Companies", FormMethod.Post, new { area = "Admin", @id = "frmContactInfo" }))
+        {*@
+            <div class="general-info-wrap padding-btn-0 plp-search-wrap">
+                <a id="AddContactInfo" class="add-btn" style="float:right;">Save</a>
+                <ul class="general-info-from-wrap padding-btn-40">
+                    <li>
+                        @*<form style="display:inline!important;">*@
+                        <div class="field-group lg" style="width:100%;">
+                            <label class="field-label">Upload logo</label>
+                            <input type="file" id="fileUpload" name="fileUpload" accept="image/*" onchange="readURL(this);" />
+                            
+                        </div>
+                        @*<div class="field-group lg">
+                            <img id="blah" src="~/Uploads/no_image_selected.png" alt="your image" />
+                        </div>*@
+
+                        <div class="field-group lg">
+                            <label class="field-label">Comapny Name</label>
+                            @Html.HiddenFor(model=>model.CompanyId)
+                            <input type="hidden" id="CompanyLogo" name="CompanyLogo" />
+                            @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-field" })
+                        </div>
+                        <div class="field-group sm">
+                            <label class="field-label">ASI#</label>
+                            @Html.TextBoxFor(model => model.ASI, new { @class = "form-field" })
+                        </div>
+                        <div class="field-group sm">
+                            <label class="field-label">PPAI#</label>
+                            @Html.TextBoxFor(model => model.PPAI, new { @class = "form-field" })
+                        </div>
+                        <div class="field-group sm">
+                            <label class="field-label">SAGE#</label>
+                            @Html.TextBoxFor(model => model.SAGE, new { @class = "form-field" })
+                        </div>
+
+                        <div class="field-group lg">
+                            <label class="field-label">Street Address</label>
+                            @Html.TextBoxFor(model => model.StreetAddress, new { @class = "form-field" })
+                        </div>
+                        <div class="field-group sm">
+                            <label class="field-label">City</label>
+                            @Html.TextBoxFor(model => model.City, new { @class = "form-field" })
+                        </div>
+                        <div class="field-group sm">
+                            <label class="field-label">State</label>
+                            @Html.TextBoxFor(model => model.State, new { @class = "form-field" })
+                        </div>
+                        <div class="field-group sm">
+                            <label class="field-label">Zip Code</label>
+                            @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-field" })
+                        </div>
+
+
+                        <div class="field-group lg">
+                            <label class="field-label">Website Url</label>
+                            @Html.TextBoxFor(model => model.Website, new { @class = "form-field" })
+                        </div>
+
+                        <div class="field-group sm">
+                            <label class="field-label">Fob Point In Canada</label>
+                            <select id="FOBPointInCanada">
+                                <option value="">Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+
+                        </div>
+
+                        @*</form>*@
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-tab-wrap">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#pri-contact" aria-controls="pri-contact" role="tab" data-toggle="tab">Primary Contact</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#sec-contact" aria-controls="sec-contact" role="tab" data-toggle="tab">Secondary Contact</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#try-contact" aria-controls="try-contact" role="tab" data-toggle="tab">Tertiary Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="pri-contact">
+                        <div class="general-info-wrap padding-btn-0">
+                            <ul class="general-info-from-wrap">
+                                <li>
+                                    <div class="field-group lg">
+                                        <label class="field-label">First Name</label>
+                                        @Html.TextBoxFor(model => model.PrimaryContactFirstName, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group lg">
+                                        <label class="field-label">Last Name</label>
+                                        @Html.TextBoxFor(model => model.PrimaryContactLastName, new { @class = "form-field" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="field-group md">
+                                        <label class="field-label">Phone</label>
+                                        @Html.TextBoxFor(model => model.PrimaryContactDirectLine, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group md">
+                                        <label class="field-label">Fax</label>
+                                        @Html.TextBoxFor(model => model.PrimaryContactFax, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group md">
+                                        <label class="field-label">Email</label>
+                                        @Html.TextBoxFor(model => model.PrimaryContactEmail, new { @class = "form-field" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="field-group lg">
+                                        <label class="field-label">Affiliations(groups and affilations associated with)</label>
+                                        @Html.TextBoxFor(model => model.PrimaryContactAffilations, new { @class = "form-field" })
+                                    </div>
+
+                                    <div class="field-group sm">
+                                        <label class="field-label">Trade Only</label>
+                                        <select id="PrimaryContactTradeOnly">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="sec-contact">
+                        <div class="general-info-wrap padding-btn-0">
+                            <ul class="general-info-from-wrap">
+                                <li>
+                                    <div class="field-group lg">
+                                        <label class="field-label">First Name</label>
+                                        @Html.TextBoxFor(model => model.SecondaryContactFirstName, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group lg">
+                                        <label class="field-label">Last Name</label>
+                                        @Html.TextBoxFor(model => model.SecondaryContactLastName, new { @class = "form-field" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="field-group md">
+                                        <label class="field-label">Phone</label>
+                                        @Html.TextBoxFor(model => model.SecondaryContactDirectLine, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group md">
+                                        <label class="field-label">Fax</label>
+                                        @Html.TextBoxFor(model => model.SecondaryContactFax, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group md">
+                                        <label class="field-label">Email</label>
+                                        @Html.TextBoxFor(model => model.SecondaryContactEmail, new { @class = "form-field" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="field-group lg">
+                                        <label class="field-label">Affiliations(groups and affilations associated with)</label>
+                                        @Html.TextBoxFor(model => model.SecondaryContactAffilations, new { @class = "form-field" })
+                                    </div>
+
+                                    <div class="field-group sm">
+                                        <label class="field-label">Trade Only</label>
+                                        <select id="SecondaryContactTradeOnly">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="try-contact">
+                        <div class="general-info-wrap padding-btn-0">
+                            <ul class="general-info-from-wrap">
+                                <li>
+                                    <div class="field-group lg">
+                                        <label class="field-label">First Name</label>
+                                        @Html.TextBoxFor(model => model.TertiaryContactFirstName, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group lg">
+                                        <label class="field-label">Last Name</label>
+                                        @Html.TextBoxFor(model => model.TertiaryContactLastName, new { @class = "form-field" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="field-group md">
+                                        <label class="field-label">Phone</label>
+                                        @Html.TextBoxFor(model => model.TertiaryContactDirectLine, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group md">
+                                        <label class="field-label">Fax</label>
+                                        @Html.TextBoxFor(model => model.TertiaryContactFax, new { @class = "form-field" })
+                                    </div>
+                                    <div class="field-group md">
+                                        <label class="field-label">Email</label>
+                                        @Html.TextBoxFor(model => model.TertiaryContactEmail, new { @class = "form-field" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="field-group lg">
+                                        <label class="field-label">Affiliations(groups and affilations associated with)</label>
+                                        @Html.TextBoxFor(model => model.TertiaryContactAffilations, new { @class = "form-field" })
+                                    </div>
+
+                                    <div class="field-group sm">
+                                        <label class="field-label">Trade Only</label>
+                                        <select id="TertiaryContactTradeOnly">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                @*<input type="button" id="AddContactInfo" value="Save" class="add-btn" />*@
+                
+                </div>
+
+           
+        @*}*@
+    </form>
+</div><!--end of div form-->

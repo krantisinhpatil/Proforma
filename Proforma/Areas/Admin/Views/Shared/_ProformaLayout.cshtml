@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | Proforma Sourcing Guide</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @*<meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>*@
+</head>
+<body>
+    <div class="wrap-all">
+        <div id="dashboard-wrap" class="container-fluid clearfix">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="dashboard-inner-wrap">
+                        <div class="dashboard-hdr">
+                            <ul>
+                                <li>
+                                    <img src="~/Content/images/proforma-logo-img.png" alt="Proforma">
+                                </li>
+                                <li>
+                                    <img src="~/Content/images/src-guide-logo-img.png" alt="Sourcing Guide">
+                                </li>
+                            </ul>
+                        </div>
+                        @*<div class="dashboard-tab">*@
+                           
+                                @RenderBody()
+                           
+                        @*</div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@model  List<Proforma.Areas.Admin.ViewModels.CompaniesModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>CompanyName</th>
+            <th>PartnerType</th>
+            <th>ASI</th>
+            <th>PPAI</th>
+            <th>PPPC</th>
+            <th>SAGE</th>
+            <th>UPIC</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartnerType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ASI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PPAI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PPPC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SAGE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UPIC)
+                </td>
+                <td style="width: 25%;">
+                    <a href="~/Admin/Companies/Company?companyId=@item.CompanyId">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

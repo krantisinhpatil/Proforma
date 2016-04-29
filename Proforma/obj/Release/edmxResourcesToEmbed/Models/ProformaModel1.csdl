@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ProformaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Model.Category" />
+    <EntitySet Name="Companies" EntityType="Model.Company" />
+    <AssociationSet Name="FK_Company_Category" Association="Model.FK_Company_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Companies" Relationship="Model.FK_Company_Category" FromRole="Category" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartnerType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="StreetAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Phone1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Phone2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FTPSite" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ArtEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OrderEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FOBPointInCanada" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QuoteinCanadianDollars" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactExtension" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryContactDirectLine" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactExtension" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContactDirectLine" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TradeOnly" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Union" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ASI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PPAI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PPPC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UPIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Certifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MinorityOwned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProformaPricing" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProformaPrograms" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductsNCapabilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rushor24hour" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Model.FK_Company_Category" FromRole="Company" ToRole="Category" />
+  </EntityType>
+  <Association Name="FK_Company_Category">
+    <End Type="Model.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="Model.Company" Role="Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

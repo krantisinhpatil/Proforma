@@ -1,0 +1,497 @@
+﻿@model Proforma.Areas.Admin.ViewModels.CompanyModel
+@{
+    ViewBag.Title = "Company";
+    Layout = "~/Areas/Admin/Views/Shared/_ProformaLayout.cshtml";
+}
+<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+<div class="alert alert-success" id="SuccessSaveAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Well done!</strong> Your record has been successfully saved.
+</div>
+<div class="alert alert-success" id="SuccessDeleteAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    Record has been deleted successfully.
+</div>
+<div class="alert alert-error" id="FailureAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+</div>
+<div class="alert alert-block" id="WarningAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <h4>Warning!</h4>
+    <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+</div>
+<div class="dashboard-tab">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#ContactInfo" aria-controls="ContactInfo" role="tab" data-toggle="tab">Contact Info</a>
+        </li>
+        <li role="presentation">
+            <a href="#ProductCapabilities" aria-controls="ProductCapabilities" role="tab" data-toggle="tab">Product/Capabilities</a>
+        </li>
+        <li role="presentation">
+            <a href="#ProformaProgramsSpecials" aria-controls="ProformaProgramsSpecials" role="tab" data-toggle="tab">Proforma Programs/Specials</a>
+        </li>
+        <!-- <li role="presentation">
+           <a href="#analytics" aria-controls="analytics" role="tab" data-toggle="tab">Analytics</a>
+         </li>-->
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- ContactInfo partial -->
+        @Html.Partial("ContactInfoPartial", Model.ContactInfo)
+
+        <!-- End ContactInfo partial-->
+        <!--Product Capabilities partial-->
+        @Html.Partial("ProductCapabilitiesPartial", Model.ProductsCapability)
+        <!--End Product Capabilities partial-->
+        <!--Proforma Programs partial -->
+        @Html.Partial("ProformaProgramsPartial", Model.ProformaProgram)
+        <!--End Proforma Programs partial-->
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="H3">Delete this record?</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this record?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deletebtn">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="SuccessDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                Record deleted successfully
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="confirmedDelete">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="SuccessSaveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                Record Saved Successfully
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="confirmedSave">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+   
+    $(document).ready(function () {
+        debugger;
+        @*var logo = "@Model.ContactInfo.CompanyLogo";
+        if (logo != "" || logo != null)
+        {
+            image = logo.split('Uploads');
+            $("#blah").attr('src', '../../Uploads/' + image[1]  );
+        }*@
+
+     
+        
+        $("#FOBPointInCanada").val("@Model.ContactInfo.FOBPointInCanada");
+        $("#PrimaryContactTradeOnly").val("@Model.ContactInfo.PrimaryContactTradeOnly");
+        $("#SecondaryContactTradeOnly").val("@Model.ContactInfo.SecondaryContactTradeOnly");
+        $("#TertiaryContactTradeOnly").val("@Model.ContactInfo.TertiaryContactTradeOnly");
+        $("#frmContactInfo").validate({
+            rules: {
+                fileUpload: {
+                    extension: "jpg|gif|png"
+                },
+                CompanyName: {
+                    required: true,
+                    maxlength: 500
+                },
+                ASI: {
+                    maxlength: 100
+                },
+                PPAI: {
+                    maxlength: 100
+                },
+                SAGE: {
+                    maxlength: 100
+                },
+                StreetAddress: {
+                    maxlength: 500
+                },
+                City: {
+                    maxlength: 200
+                },
+                State: {
+                    maxlength: 50
+                },
+                ZipCode: {
+                    maxlength: 50
+                },
+                Website: {
+                    maxlength: 250
+                },
+                PrimaryContactFirstName: {
+                    maxlength: 1000
+                },
+                PrimaryContactLastName: {
+                    maxlength: 1000
+                },
+                PrimaryContactDirectLine: {
+                    maxlength: 100
+                },
+                PrimaryContactFax: {
+                    maxlength: 50
+                },
+                PrimaryContactEmail: {
+                    //email: true,
+                    maxlength: 250
+                },
+                PrimaryContactAffilations: {
+                    maxlength: 1000
+                },
+                SecondaryContactFirstName: {
+                    maxlength: 1000
+                },
+                SecondaryContactLastName: {
+                    maxlength: 1000
+                },
+                SecondaryContactDirectLine: {
+                    maxlength: 100
+                },
+                SecondaryContactFax: {
+                    maxlength: 50
+                },
+                SecondaryContactEmail: {
+                    //email: true,
+                    maxlength: 250
+                },
+                SecondaryContactAffilations: {
+                    maxlength: 1000
+                },
+                TertiaryContactFirstName: {
+                    maxlength: 1000
+                },
+                TertiaryContactLastName: {
+                    maxlength: 1000
+                },
+                TertiaryContactDirectLine: {
+                    maxlength: 100
+                },
+                TertiaryContactFax: {
+                    maxlength: 50
+                },
+                TertiaryContactEmail: {
+                   // email: true,
+                    maxlength: 500
+                },
+                TertiaryContactAffilations: {
+                    maxlength: 1000
+                },
+            },
+            messages: {
+                fileUpload: "Invalid image. Only .jpg,.png,.gif images are allowed."
+            }
+        });
+
+        $("#frmProductsCapabilities").validate({
+            rules: {
+                Name: {
+                    required: true,
+                    maxlength: 2000
+                }
+            },
+            messages: {
+            }
+        });
+
+        $("#frmProformaPrograms").validate({
+            rules: {
+                Name: {
+                    required: true,
+                    maxlength: 2000
+                }
+            },
+            messages: {
+            }
+        });
+
+        $("#AddContactInfo").click(function () {
+            if ($('#frmContactInfo ').valid()) {
+                var companyLogo = SaveImage1();
+                debugger;
+                $("#CompanyLogo").val(companyLogo.name);
+                var formData = JSON.stringify($('#frmContactInfo').serializeObject());
+                var url = '../Companies/SaveContactInfoDetails';
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { ContactInfoData: formData },
+                    dataType: 'json',
+                    success: function (data) {
+                        //TO DO: Success Model
+                        $("#SuccessDeleteAlert").css('display', 'none');
+                        $("#SuccessSaveAlert").css('display', 'block');
+                        $('html, body').animate({ scrollTop: '0px' }, 300);
+                        //$('#SuccessSaveModal').modal();
+                        //$('#confirmedSave').click(function () {
+                        //    $('#SuccessSaveModal').hide();
+                        //});
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error');
+                    }
+
+                });
+            }
+        });
+
+        $("#btnProductCapability").click(function () {
+            if ($('#frmProductsCapabilities').valid()) {
+                var ProductCapabilityId = $("#ProductCapabilityId").val();
+                var formData = JSON.stringify($('#frmProductsCapabilities').serializeObject());
+                var url = '../Companies/SaveProductCapability';
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { ProductCapabilityData: formData, ProductCapabilityId: ProductCapabilityId },
+                    dataType: 'json',
+                    success: function (data) {
+                        //TO DO: Success Model
+                        if (ProductCapabilityId == 0) {
+                            $("#lstProductCapabilities").append('<li id="ProductCapability' + data.Id + '"><ul class="prd-cap-list-dtl"><li id="capabilityDetails' + data.Id + '">' + data.Name + '</li><li><button id="deleteCapability' + data.Id + '" onclick="fnDeleteProductCapability(this)"><img src="../../Content/images/delete-icon.png" alt="Delete"></button></li><li><button id="editCapability' + data.Id + '" onclick="fnEditProductCapability(this)"><img src="../../Content/images/edit-icon.png" alt="Edit"></button></li></ul></li>');
+                        }
+                        else {
+                            $("#capabilityDetails" + ProductCapabilityId).text($("#ProductCapabilityName").val());
+                        }
+                        $("#ProductCapabilityName").val("");
+                        $("#ProductCapabilityId").val(0);
+
+                        $("#SuccessDeleteAlert").css('display', 'none');
+                        $("#SuccessSaveAlert").css('display', 'block');
+                        $('html, body').animate({ scrollTop: '0px' }, 300);
+                        //$('#SuccessSaveModal').modal();
+                        //$('#confirmedSave').click(function () {
+                        //    $('#SuccessSaveModal').hide();
+                        //});
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error');
+                    }
+
+                });
+            }
+        });
+
+        $("#btnProformaPrograms").click(function () {
+            if ($('#frmProformaPrograms').valid()) {
+                var ProformaProgramId = $("#ProformaProgramId").val();
+                var formData = JSON.stringify($('#frmProformaPrograms').serializeObject());
+                var url = '../Companies/SaveProformaPrograms';
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { ProformaProgramsData: formData, ProformaProgramsId: ProformaProgramId },
+                    dataType: 'json',
+                    success: function (data) {
+                        //TO DO: Success Model
+                        if (ProformaProgramId == 0) {
+                            $("#lstProformaPrograms").append('<li id="ProformaProgram' + data.Id + '"><ul class="prd-cap-list-dtl"><li id="ProgramDetails' + data.Id + '">' + data.Name + '</li><li><button id="deleteProgram' + data.Id + '" onclick="fnDeleteProformaProgram(this)"><img src="../../Content/images/delete-icon.png" alt="Delete"></button></li><li><button id="editProgram' + data.Id + '" onclick="fnEditProformaProgram(this)"><img src="../../Content/images/edit-icon.png" alt="Edit"></button></li></ul></li>');
+                        }
+                        else {
+                            $("#ProgramDetails" + ProformaProgramId).text($("#ProformaProgramName").val());
+                        }
+                        $("#ProformaProgramName").val("");
+                        $("#ProformaProgramId").val(0);
+                        $("#SuccessDeleteAlert").css('display', 'none');
+                        $("#SuccessSaveAlert").css('display', 'block');
+                        $('html, body').animate({ scrollTop: '0px' }, 300);
+                        //$('#SuccessSaveModal').modal();
+                        //$('#confirmedSave').click(function () {
+                        //    $('#SuccessSaveModal').hide();
+                        //});
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error');
+                    }
+
+                });
+            }
+        });
+
+
+        $.fn.serializeObject = function () {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+    });
+
+    function fnEditProductCapability(elm) {
+        var $elm = $(elm);
+        var idData = $elm.attr("id").split('editCapability');
+        var productCapabilityId = idData[1];
+        $("#ProductCapabilityName").val($("#capabilityDetails" + productCapabilityId).text());
+        $("#ProductCapabilityId").val(productCapabilityId);
+        $('html, body').animate({ scrollTop: '0px' }, 300);
+    }
+
+    function fnEditProformaProgram(elm)
+    {
+        var $elm = $(elm);
+        var idData = $elm.attr("id").split('editProgram');
+        var proformaProgramId = idData[1];
+        $("#ProformaProgramName").val($("#ProgramDetails" + proformaProgramId).text());
+        $("#ProformaProgramId").val(proformaProgramId);
+        $('html, body').animate({ scrollTop: '0px' }, 300);
+    }
+
+    function fnDeleteProductCapability(elm)
+    {
+        //$('#DeleteModal').modal();
+       // $('#deletebtn').click(function () {
+        //  $('#DeleteModal').hide();
+        if (confirm("Are you sure, you want to delete the record?")) {
+            var $elm = $(elm);
+            var idData = $elm.attr("id").split('deleteCapability');
+
+            var url = '../Companies/DeleteProductCapability';
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: { ProductCapabilityId: idData[1] },
+                dataType: 'json',
+                success: function (data) {
+                    $('#ProductCapability' + idData[1]).remove();
+                    //TO DO: Success Model
+
+                    $("#SuccessDeleteAlert").css('display', 'block');
+                    $("#SuccessSaveAlert").css('display', 'none');
+                    $('html, body').animate({ scrollTop: '0px' }, 300);
+                    //$('#SuccessDeleteModal').modal();
+                    //$('#confirmedDelete').click(function () {
+                    //  $('#SuccessDeleteModal').hide();
+                    //});
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error');
+                }
+
+            });
+        }//);
+    }
+
+    function fnDeleteProformaProgram(elm) {
+        //$('#DeleteModal').modal();
+       // $('#deletebtn').click(function () {
+        // $('#DeleteModal').hide();
+        if (confirm("Are you sure, you want to delete the record?")) {
+            var $elm = $(elm);
+            var idData = $elm.attr("id").split('deleteProgram');
+
+            var url = '../Companies/DeleteProformaProgram';
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: { ProformaProgramId: idData[1] },
+                dataType: 'json',
+                success: function (data) {
+                    //TO DO: Success Model
+                    $('#ProformaProgram' + idData[1]).remove();
+
+                    $("#SuccessDeleteAlert").css('display', 'block');
+                    $("#SuccessSaveAlert").css('display', 'none');
+                    $('html, body').animate({ scrollTop: '0px' }, 300);
+                    //$('#SuccessDeleteModal').modal();
+                    //$('#confirmedDelete').click(function () {
+                    //    $('#SuccessDeleteModal').hide();
+                    //});
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error');
+                }
+            });
+        }//);
+    }
+
+    function SaveImage1() {
+        debugger;
+        var data = new FormData();
+
+        var files = $("#fileUpload").get(0).files;
+        var filepath = "";
+        // Add the uploaded image content to the form data collection
+        if (files.length > 0) {
+            data.append("UploadedImage", files[0]);
+            // Make Ajax request with the contentType = false, and procesDate = false
+
+            var url = '../Companies/UploadFile';
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: data,
+                //dataType: 'json',
+                success: function (data) {
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error');
+                }
+            });
+
+            return files[0];
+        }
+        return null;
+
+    }
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+</script>
+
+

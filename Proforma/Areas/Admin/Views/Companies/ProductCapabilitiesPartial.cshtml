@@ -1,0 +1,51 @@
+﻿@model Proforma.Areas.Admin.ViewModels.ProductsCapabilityModel
+@*@using (Html.BeginForm("ProductsCapabilities", "Companies", FormMethod.Post, new { area = "Admin", @id = "frmProductsCapabilities" }))
+    {*@
+<div role="tabpanel" class="tab-pane" id="ProductCapabilities">
+    <div class="general-info-wrap prd-cap-wrap padding-btn-0">
+        <form id="frmProductsCapabilities">
+            <ul class="general-info-from-wrap padding-btn-40 clearfix">
+                <li>
+                    <div class="field-group">
+                        <label class="field-label">Product Capability Name</label>
+                        @Html.HiddenFor(model => model.CompanyId)
+                        <input type="hidden" id="ProductCapabilityId" value="0"/>
+                        @Html.TextAreaFor(model => model.Name, new { @id = "ProductCapabilityName" })
+                        @*<input type="button" id="btnProductCapability" class="add-btn" value="Save" />*@
+                        <a id="btnProductCapability" class="add-btn">Save</a>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="prd-cap-list-wrap events-list-wrap">
+        <ul id="lstProductCapabilities">
+            <li >
+                <ul class="prd-cap-list-hdr">
+
+                    <li style="border-right:none;">Description</li>
+                </ul>
+            </li>
+            @if (Model.lstProductsCapabilities.Count() > 0)
+            {
+                foreach (var item in Model.lstProductsCapabilities)
+                {
+                    var EditId = "editCapability" + item.ProductsCapabilityId;
+                    var DeleteId = "deleteCapability" + item.ProductsCapabilityId;
+                    var DescId = "capabilityDetails" + item.ProductsCapabilityId;
+                    var prodId = "ProductCapability" + item.ProductsCapabilityId;
+                    <li id="@prodId">
+                        <ul class="prd-cap-list-dtl">
+                            <li id="@DescId">@item.Name</li>
+                            @*<li id="@DeleteId"><a href="~/Admin/ProductsCapabilities/Delete?id=@item.ProductsCapabilityId"><img src="~/Content/images/delete-icon.png" alt="Delete"></a></li>
+                                <li id="@EditId"><a href="~/Admin/ProductsCapabilities/Index?companyId=@item.CompanyId&id=@item.ProductsCapabilityId"><img src="~/Content/images/edit-icon.png" alt="Edit"></a></li>*@
+                            <li><a id="@DeleteId" onclick="fnDeleteProductCapability(this)" class="crud-icons"><img src="~/Content/images/delete-icon.png" alt="Delete"></a></li>
+                            <li><a id="@EditId" onclick="fnEditProductCapability(this)" class="crud-icons"><img src="~/Content/images/edit-icon.png" alt="Edit"></a></li>
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+@*}*@

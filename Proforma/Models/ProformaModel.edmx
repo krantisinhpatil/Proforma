@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProformaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="PartnerType" Type="varchar" MaxLength="10" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="500" />
+          <Property Name="StreetAddress" Type="varchar" MaxLength="500" />
+          <Property Name="City" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="varchar" MaxLength="10" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="10" />
+          <Property Name="Phone1" Type="varchar" MaxLength="50" />
+          <Property Name="Phone2" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="Website" Type="varchar" MaxLength="250" />
+          <Property Name="FTPSite" Type="varchar" MaxLength="250" />
+          <Property Name="ArtEmail" Type="varchar" MaxLength="250" />
+          <Property Name="OrderEmail" Type="varchar" MaxLength="250" />
+          <Property Name="FOBPointInCanada" Type="varchar" MaxLength="10" />
+          <Property Name="QuoteinCanadianDollars" Type="varchar" MaxLength="10" />
+          <Property Name="PrimaryContactName" Type="varchar" MaxLength="100" />
+          <Property Name="PrimaryContactEmail" Type="varchar" MaxLength="250" />
+          <Property Name="PrimaryContactExtension" Type="varchar" MaxLength="50" />
+          <Property Name="PrimaryContactDirectLine" Type="varchar" MaxLength="50" />
+          <Property Name="SecondaryContactName" Type="varchar" MaxLength="100" />
+          <Property Name="SecondaryContactEmail" Type="varchar" MaxLength="250" />
+          <Property Name="SecondaryContactExtension" Type="varchar" MaxLength="50" />
+          <Property Name="SecondaryContactDirectLine" Type="varchar" MaxLength="50" />
+          <Property Name="TradeOnly" Type="varchar" MaxLength="10" />
+          <Property Name="Union" Type="varchar" MaxLength="10" />
+          <Property Name="ASI" Type="varchar" MaxLength="20" />
+          <Property Name="PPAI" Type="varchar" MaxLength="20" />
+          <Property Name="PPPC" Type="varchar" MaxLength="20" />
+          <Property Name="SAGE" Type="varchar" MaxLength="20" />
+          <Property Name="UPIC" Type="varchar" MaxLength="20" />
+          <Property Name="Certifications" Type="varchar" MaxLength="500" />
+          <Property Name="MinorityOwned" Type="varchar" MaxLength="15" />
+          <Property Name="ProformaPricing" Type="varchar" MaxLength="500" />
+          <Property Name="ProformaPrograms" Type="varchar" MaxLength="500" />
+          <Property Name="ProductsNCapabilities" Type="varchar(max)" />
+          <Property Name="Rushor24hour" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_Company_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProformaModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Company_Category" Association="Self.FK_Company_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProformaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_Company_Category" FromRole="Category" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="PartnerType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FTPSite" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ArtEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OrderEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FOBPointInCanada" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="QuoteinCanadianDollars" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactExtension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContactDirectLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactExtension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryContactDirectLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TradeOnly" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Union" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ASI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PPAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PPPC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SAGE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPIC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Certifications" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MinorityOwned" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ProformaPricing" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProformaPrograms" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProductsNCapabilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Rushor24hour" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Company_Category" FromRole="Company" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_Company_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProformaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <AssociationSet Name="FK_Company_Category" Association="Self.FK_Company_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProformaModelStoreContainer" CdmEntityContainer="ProformaEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ProformaModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="ProformaModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PartnerType" ColumnName="PartnerType" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="FTPSite" ColumnName="FTPSite" />
+                <ScalarProperty Name="ArtEmail" ColumnName="ArtEmail" />
+                <ScalarProperty Name="OrderEmail" ColumnName="OrderEmail" />
+                <ScalarProperty Name="FOBPointInCanada" ColumnName="FOBPointInCanada" />
+                <ScalarProperty Name="QuoteinCanadianDollars" ColumnName="QuoteinCanadianDollars" />
+                <ScalarProperty Name="PrimaryContactName" ColumnName="PrimaryContactName" />
+                <ScalarProperty Name="PrimaryContactEmail" ColumnName="PrimaryContactEmail" />
+                <ScalarProperty Name="PrimaryContactExtension" ColumnName="PrimaryContactExtension" />
+                <ScalarProperty Name="PrimaryContactDirectLine" ColumnName="PrimaryContactDirectLine" />
+                <ScalarProperty Name="SecondaryContactName" ColumnName="SecondaryContactName" />
+                <ScalarProperty Name="SecondaryContactEmail" ColumnName="SecondaryContactEmail" />
+                <ScalarProperty Name="SecondaryContactExtension" ColumnName="SecondaryContactExtension" />
+                <ScalarProperty Name="SecondaryContactDirectLine" ColumnName="SecondaryContactDirectLine" />
+                <ScalarProperty Name="TradeOnly" ColumnName="TradeOnly" />
+                <ScalarProperty Name="Union" ColumnName="Union" />
+                <ScalarProperty Name="ASI" ColumnName="ASI" />
+                <ScalarProperty Name="PPAI" ColumnName="PPAI" />
+                <ScalarProperty Name="PPPC" ColumnName="PPPC" />
+                <ScalarProperty Name="SAGE" ColumnName="SAGE" />
+                <ScalarProperty Name="UPIC" ColumnName="UPIC" />
+                <ScalarProperty Name="Certifications" ColumnName="Certifications" />
+                <ScalarProperty Name="MinorityOwned" ColumnName="MinorityOwned" />
+                <ScalarProperty Name="ProformaPricing" ColumnName="ProformaPricing" />
+                <ScalarProperty Name="ProformaPrograms" ColumnName="ProformaPrograms" />
+                <ScalarProperty Name="ProductsNCapabilities" ColumnName="ProductsNCapabilities" />
+                <ScalarProperty Name="Rushor24hour" ColumnName="Rushor24hour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

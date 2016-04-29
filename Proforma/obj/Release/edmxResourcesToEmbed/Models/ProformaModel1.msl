@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ProformaEntities2">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Model.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Category1" ColumnName="Category" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="Model.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Rushor24hour" ColumnName="Rushor24hour" />
+          <ScalarProperty Name="ProductsNCapabilities" ColumnName="ProductsNCapabilities" />
+          <ScalarProperty Name="ProformaPrograms" ColumnName="ProformaPrograms" />
+          <ScalarProperty Name="ProformaPricing" ColumnName="ProformaPricing" />
+          <ScalarProperty Name="MinorityOwned" ColumnName="MinorityOwned" />
+          <ScalarProperty Name="Certifications" ColumnName="Certifications" />
+          <ScalarProperty Name="UPIC" ColumnName="UPIC" />
+          <ScalarProperty Name="SAGE" ColumnName="SAGE" />
+          <ScalarProperty Name="PPPC" ColumnName="PPPC" />
+          <ScalarProperty Name="PPAI" ColumnName="PPAI" />
+          <ScalarProperty Name="ASI" ColumnName="ASI" />
+          <ScalarProperty Name="Union" ColumnName="Union" />
+          <ScalarProperty Name="TradeOnly" ColumnName="TradeOnly" />
+          <ScalarProperty Name="SecondaryContactDirectLine" ColumnName="SecondaryContactDirectLine" />
+          <ScalarProperty Name="SecondaryContactExtension" ColumnName="SecondaryContactExtension" />
+          <ScalarProperty Name="SecondaryContactEmail" ColumnName="SecondaryContactEmail" />
+          <ScalarProperty Name="SecondaryContactName" ColumnName="SecondaryContactName" />
+          <ScalarProperty Name="PrimaryContactDirectLine" ColumnName="PrimaryContactDirectLine" />
+          <ScalarProperty Name="PrimaryContactExtension" ColumnName="PrimaryContactExtension" />
+          <ScalarProperty Name="PrimaryContactEmail" ColumnName="PrimaryContactEmail" />
+          <ScalarProperty Name="PrimaryContactName" ColumnName="PrimaryContactName" />
+          <ScalarProperty Name="QuoteinCanadianDollars" ColumnName="QuoteinCanadianDollars" />
+          <ScalarProperty Name="FOBPointInCanada" ColumnName="FOBPointInCanada" />
+          <ScalarProperty Name="OrderEmail" ColumnName="OrderEmail" />
+          <ScalarProperty Name="ArtEmail" ColumnName="ArtEmail" />
+          <ScalarProperty Name="FTPSite" ColumnName="FTPSite" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="PartnerType" ColumnName="PartnerType" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

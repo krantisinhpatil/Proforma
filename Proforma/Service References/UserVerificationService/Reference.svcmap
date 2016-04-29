@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fb65c099-05a7-4f8f-bf7b-8704b02e0c1d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:41875/Services/ProformaUserService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ProformaUserService.disco" MetadataType="Disco" ID="0435d168-eeaf-42c5-aad4-1399c1575d2c" SourceId="1" SourceUrl="http://localhost:41875/Services/ProformaUserService.svc?disco" />
+    <MetadataFile FileName="ProformaUserService.xsd" MetadataType="Schema" ID="199a1e9c-6995-45fa-8e9a-b376d2a81812" SourceId="1" SourceUrl="http://localhost:41875/Services/ProformaUserService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProformaUserService1.xsd" MetadataType="Schema" ID="5086c72a-ba0e-4061-9cd5-3a4149304ddc" SourceId="1" SourceUrl="http://localhost:41875/Services/ProformaUserService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProformaUserService.wsdl" MetadataType="Wsdl" ID="e6a0581c-e552-452e-a851-f3130ad9401d" SourceId="1" SourceUrl="http://localhost:41875/Services/ProformaUserService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

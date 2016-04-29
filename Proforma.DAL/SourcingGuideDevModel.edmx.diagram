@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0ac42514159f48e6adbffedaf5839362" Name="Diagram1">
+        <EntityTypeShape EntityType="SourcingGuideDevModel.SourcingGuideDevUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.Category" Width="1.5" PointX="3.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.Company" Width="1.5" PointX="6" PointY="1.375" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.CompanyMeta" Width="1.5" PointX="11.25" PointY="6.5" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.Event" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.Feedback" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.FilterCriteria" Width="1.5" PointX="9" PointY="1.625" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.Notification" Width="1.5" PointX="10.75" PointY="10" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.ProductsCapability" Width="1.5" PointX="8.25" PointY="10.625" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.ProformaGeneralSettings" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.ProformaProgram" Width="1.5" PointX="8.25" PointY="4.625" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.ProformaUsers" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.SPDevTeam" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.SPDevTeamMember" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.SupportCenterContact" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.TermsCondition" Width="1.5" PointX="13.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.UserFavorite" Width="1.5" PointX="10.75" PointY="13.75" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.UserNotification" Width="1.5" PointX="13" PointY="10" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_Company_Category" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_CompanyMeta_Company" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_ProductsCapability_Company" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_ProformaProgram_Company" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_CompanyMeta_FilterCriteria" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_UserNotification_Notification" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.CompanyCategory" Width="1.5" PointX="15.25" PointY="7.75" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_CompanyCategory_Pro_Category" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_CompanyCategory_Pro_Company" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.Pro_ProExclusive" Width="1.5" PointX="8.25" PointY="14.125" />
+        <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_ProExclusive_Pro_Company" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,748 @@
+﻿@model Proforma.Areas.Admin.ViewModels.SuperAdminModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_ProformaLayout.cshtml";
+}
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/additional-methods.min.js"></script>
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#AllCategories').multiselect({
+            includeSelectAllOption: true
+        });
+    });
+</script>
+
+<style>
+    .prd-cap-list-hdr > li:nth-child(1), .prd-cap-list-dtl > li:nth-child(1) {
+        width: 261px !important;
+    }
+</style>
+
+<div class="alert alert-success" id="SuccessSaveAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Well done!</strong> Your record has been successfully saved.
+</div>
+<div class="alert alert-success" id="SuccessDeleteAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    Record has been deleted successfully.
+</div>
+<div class="alert alert-error" id="FailureAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+</div>
+<div class="alert alert-block" id="WarningAlert" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <h4>Warning!</h4>
+    <p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+</div>
+
+<div class="dashboard-tab">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#plp" aria-controls="plp" role="tab" data-toggle="tab">PLP</a>
+        </li>
+        <li role="presentation">
+            <a href="#events" aria-controls="events" role="tab" data-toggle="tab">Events</a>
+        </li>
+        <li role="presentation">
+            <a href="#owners" aria-controls="owners" role="tab" data-toggle="tab">Owners</a>
+        </li>
+        <li role="presentation">
+            <a href="#proexclusives" aria-controls="proexclusives" role="tab" data-toggle="tab">ProExclusives</a>
+        </li>
+        <li role="presentation">
+            <a href="#analytics" aria-controls="analytics" role="tab" data-toggle="tab">Analytics</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!--Product Capabilities partial-->
+        @Html.Partial("ProformaPLPPartial", Model.PLPs)
+        <!--End Product Capabilities partial-->
+        <!-- Proforma Events partial -->
+        @Html.Partial("ProformaEventsPartial", Model.Events)
+        <!-- End ContactInfo partial-->
+        <!--Product Capabilities partial-->
+        @Html.Partial("ProformaOwnersPartial")
+        <!--End Product Capabilities partial-->
+        <!--ProExclusives partial-->
+        @Html.Partial("ProformaProExclusivePartial")
+        <!--End ProExclusives partial-->
+        <!--Proforma Programs partial -->
+        @Html.Partial("ProformaAnalyticsPartial")
+        <!--End Proforma Programs partial-->
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#ExpirationDate').datetimepicker({
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            });
+
+            var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+            ];
+            $("#ProExclusiveCompanyName").autocomplete({
+                source: availableTags
+            });
+            //$('#EndDate').datetimepicker({
+            //    useCurrent: false, //Important! See issue #1075
+            //    icons: {
+            //        time: "fa fa-clock-o",
+            //        date: "fa fa-calendar",
+            //        up: "fa fa-arrow-up",
+            //        down: "fa fa-arrow-down"
+            //    }
+            //});
+            //$("#StartDate").on("dp.change", function (e) {
+            //    $('#EndDate').data("DateTimePicker").minDate(e.date);
+            //    $('#EventStartDate').val(new Date(e.date).toLocaleDateString());
+            //});
+            //$("#EndDate").on("dp.change", function (e) {
+            //    $('#StartDate').data("DateTimePicker").maxDate(e.date);
+            //    $('#EventEndDate').val(new Date(e.date).toLocaleDateString());
+            //});
+
+            $("#frmAddEvent").validate({
+                rules: {
+                    fileUpload: {
+                        extension: "jpg|gif|png"
+                    },
+                    EventTitle: {
+                        required: true,
+                        maxlength: 250
+                    },
+                    EventStartDate: {
+                        required: true
+                    }
+                },
+                messages: {
+                }
+            });
+
+            $("#frmPLPCompanyInfo").validate({
+                rules: {
+                    fileUpload1: {
+                        extension: "jpg|gif|png"
+                    },
+                    CompanyName: {
+                        required: true,
+                        maxlength: 500
+                    },
+                    ASI: {
+                        maxlength: 100
+                    },
+                    PPAI: {
+                        maxlength: 100
+                    },
+                    SAGE: {
+                        maxlength: 100
+                    },
+                    StreetAddress: {
+                        maxlength: 500
+                    },
+                    City: {
+                        maxlength: 200
+                    },
+                    State: {
+                        maxlength: 50
+                    },
+                    ZipCode: {
+                        maxlength: 50
+                    },
+                    Website: {
+                        maxlength: 250
+                    },
+                    PrimaryContactFirstName: {
+                        maxlength: 1000
+                    },
+                    PrimaryContactLastName: {
+                        maxlength: 1000
+                    },
+                    PrimaryContactDirectLine: {
+                        maxlength: 100
+                    },
+                    PrimaryContactFax: {
+                        maxlength: 50
+                    },
+                    PrimaryContactEmail: {
+                        //email: true,
+                        maxlength: 250
+                    },
+                    PrimaryContactAffilations: {
+                        maxlength: 1000
+                    },
+                    SecondaryContactFirstName: {
+                        maxlength: 1000
+                    },
+                    SecondaryContactLastName: {
+                        maxlength: 1000
+                    },
+                    SecondaryContactDirectLine: {
+                        maxlength: 100
+                    },
+                    SecondaryContactFax: {
+                        maxlength: 50
+                    },
+                    SecondaryContactEmail: {
+                        //email: true,
+                        maxlength: 250
+                    },
+                    SecondaryContactAffilations: {
+                        maxlength: 1000
+                    },
+                    TertiaryContactFirstName: {
+                        maxlength: 1000
+                    },
+                    TertiaryContactLastName: {
+                        maxlength: 1000
+                    },
+                    TertiaryContactDirectLine: {
+                        maxlength: 100
+                    },
+                    TertiaryContactFax: {
+                        maxlength: 50
+                    },
+                    TertiaryContactEmail: {
+                        // email: true,
+                        maxlength: 500
+                    },
+                    TertiaryContactAffilations: {
+                        maxlength: 1000
+                    },
+                },
+                messages: {
+                    fileUpload1: "Invalid image. Only .jpg,.png,.gif images are allowed."
+                }
+            });
+
+            $("#btnGoToNewEvent").click(function () {
+                $(this).css('display', 'none');
+                $("#btnBackToEvent").css('display', 'block');
+                $("#NewEventdiv").css('display', 'block');
+                $("#EventListingdiv").css('display', 'none');
+
+            });
+
+            $("#btnBackToEvent").click(function () {
+                $(this).css('display', 'none');
+                $("#btnGoToNewEvent").css('display', 'block');
+                $("#NewEventdiv").css('display', 'none');
+                $("#EventListingdiv").css('display', 'block');
+            });
+
+            $("#ddlCategory").change(function () {
+                //debugger;
+                //  var id = $(this).val();
+                var companyname = $("#CompanySearchByName").val();
+                var sortvalue = $("#sortCompanyName").val();
+                var PartnerType = null;
+                var Status = null;
+                var CategoryId = null;
+                var type = $('#ddlCategory option:selected').attr('data-type');
+                debugger;
+                if (type == "category") {
+                    CategoryId = $(this).val();
+                }
+                else if (type == "status") {
+                    Status = $(this).val();
+                }
+                else if (type == "partnertype") {
+                    PartnerType = $(this).val();
+                }
+                var sortcol = $("#SortColumnComapny").val();
+                fnGetAllCompanies(companyname, PartnerType, Status, sortvalue, CategoryId);
+
+            });
+
+            $("#btnAddEvent").click(function () {
+                if ($("#frmAddEvent").valid()) {
+                    debugger;
+                    var eventImage = SaveImage1();
+                    var EventId = $("#EventId").val();
+                    if (eventImage != "" && eventImage != null) {
+                        $("#EventImage").val(eventImage.name);
+                    }
+
+                    var formData = JSON.stringify($('#frmAddEvent').serializeObject());
+                    var url = '../SuperAdmin/SaveEvent';
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: { EventInfo: formData },
+                        dataType: 'json',
+                        success: function (data) {
+                            debugger;
+                            // var startdate = ConvertDate(data.EventStartDate);
+                            // var enddate = ConvertDate(data.EventEndDate);
+                            if (EventId == 0) {
+                                $("#lstProformaEvents").append('<li><ul class="prd-cap-list-dtl"><li id="eventTitle' + data.EventId + '">' + data.EventTitle + '</li><li id="eventdesc' + data.EventId + '">' + data.ShortDescription + '</li><li id="eventDetails' + data.EventId + '">' + data.Description + '</li><li><a id="deleteEvent' + data.EventId + '" onclick="fnDeleteEvent(this)"><img src="../../Content/images/delete-icon.png" alt="Delete"></a></li><li><a id="editEvent' + data.EventId + '" onclick="fnEditEvent(this)" ><img src="../../Content/images/edit-icon.png" alt="Edit"></a></li></ul></li>');
+                            }
+                            else {
+                                $("#eventTitle" + data.EventId).text(data.EventTitle);
+                                $("#eventdesc" + data.EventId).text(data.ShortDescription);
+                                $("#eventDetails" + data.EventId).text(data.Description);
+                            }
+                            $("#EventTitle").val("");
+                            $("#EventDescription").val("");
+                            $("#ShortDescription").val("");
+                            $("#ImgEvent").attr('src', "");
+
+                            $("#EventId").val(0);
+                            //TO DO: Success Model
+                            $("#SuccessDeleteAlert").css('display', 'none');
+                            $("#SuccessSaveAlert").css('display', 'block');
+                            $('html, body').animate({ scrollTop: '0px' }, 300);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('Error');
+                        }
+
+                    });
+                }
+
+            });
+
+            $("#btnSavePLPCompanyInfo").click(function () {
+                if ($('#frmPLPCompanyInfo ').valid()) {
+
+                    var companyLogo = SaveImage();
+                    debugger;
+                    if (companyLogo != null) {
+                        $("#CompanyLogo").val(companyLogo.name);
+                    }
+                    debugger;
+                    var formData = JSON.stringify($('#frmPLPCompanyInfo').serializeObject());
+                    var url = '../SuperAdmin/SavePLPCompanyInfo';
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: { PLPCompanyInfoData: formData },
+                        dataType: 'json',
+                        success: function (data) {
+
+                            $("#SuccessDeleteAlert").css('display', 'none');
+                            $("#SuccessSaveAlert").css('display', 'block');
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('Error');
+                        }
+
+                    });
+                }
+            });
+
+            $("#CompanySearchByName").blur(function () {
+
+                var companyname = $("#CompanySearchByName").val();
+                var sortvalue = $("#sortCompanyName").val();
+                var PartnerType = null;
+                var Status = null;
+                var CategoryId = null;
+                var sortcol = $("#SortColumnComapny").val();
+                var type = $('#ddlCategory option:selected').data('type');
+
+                if (type == "category") {
+                    CategoryId = $('#ddlCategory option:selected').val();
+                }
+                else if (type == "status") {
+                    Status = $('#ddlCategory option:selected').val();
+                }
+                else if (type == "partnertype") {
+                    PartnerType = $('#ddlCategory option:selected').val();
+                }
+                if (companyname != "" && null != companyname) {
+                    var comLength = companyname.length;
+                    if (comLength >= 3) {
+                        fnGetAllCompanies(companyname, PartnerType, Status, sortvalue, CategoryId);
+                    }
+                    else {
+                        fnGetAllCompanies(null, PartnerType, Status, sortvalue, CategoryId);
+                    }
+                }
+                else {
+                    fnGetAllCompanies(null, PartnerType, Status, sortvalue, CategoryId);
+                }
+            })
+
+            $.fn.serializeObject = function () {
+                var o = {};
+                var a = this.serializeArray();
+                $.each(a, function () {
+                    if (o[this.name] !== undefined) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+                return o;
+            };
+
+        });
+
+        function fnGetAllCompanies(CompanyName, PartnerType, Status, SortOrder, CategoryId) {
+
+            //sortvalue = 'desc';
+            debugger;
+            var url = '../SuperAdmin/GetSortedCompanies';
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: { CompanyName: CompanyName, PartnerType: PartnerType, Status: Status, SortOrder: SortOrder, CategoryId: CategoryId },
+                dataType: 'json',
+                success: function (data) {
+                    debugger;
+                    $("#lstPLPCompanies").empty();
+                    if (data != null) {
+                        var str = "";
+                        $.each(data, function (key, value) {
+                            str = str + '<li class="Company_li" onclick="fnEditCompanyInfo(' + value.CompanyId + ')"><ul class="prd-cap-list-dtl"><li>' + value.CompanyName;
+
+                            if (value.Status == "New") {
+                                str = str + '<a href="javascript:void(0);" class="new-green-btn">New</a>';
+                            }
+                            str = str + '</li><li>Nullam in magna id velit efficitur commodo ut sit amet dolor. Maecenas vel orci vel ipsum semper accumsan et </li><li>' + value.Categories + '</li><li>';
+
+                            if (value.Status == "New") {
+                                str = str + '<a href="javascript:void(0);" class="aproved-btn">Approve</a>';
+                            }
+                            str = str + '</li></ul></li>';
+                        });
+                        $("#lstPLPCompanies").append(str);
+                    }
+                    else {
+                        $("#lstPLPCompanies").append("<li>No records found.</li>");
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error');
+                }
+
+            });
+        }
+
+        function fnEditCompanyInfo(id) {
+            $("#CompanyListing").css('display', 'none');
+            $("#PLPCompanyInfo").css('display', 'block');
+
+            var url = '../SuperAdmin/GetPLPCompanyInfo';
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: { id: id },
+                dataType: 'json',
+                success: function (data) {
+                    if (null != data) {
+                        debugger;
+                        if (data.CompanyLogo != "" && data.CompanyLogo != null) {
+                            var filename = data.CompanyLogo.replace(/^.*[\\\/]/, '')
+                            $("#CompanyLogo").val(filename);
+                        }
+
+
+                        $("#ImgcompanyLogo").attr("src", data.CompanyLogo);
+                        $("#CompanyId").val(data.CompanyId);
+                        $("#CompanyName").val(data.CompanyName);
+                        $("#ASI").val(data.ASI);
+                        $("#PPAI").val(data.PPAI);
+                        $("#SAGE").val(data.SAGE);
+                        $("#StreetAddress").val(data.StreetAddress);
+                        $("#City").val(data.City);
+                        $("#State").val(data.State);
+                        $("#ZipCode").val(data.ZipCode);
+                        $("#Website").val(data.Website);
+                        $("#FOBPointInCanada").val(data.FOBPointInCanada);
+                        $("#PrimaryContactFirstName").val(data.PrimaryContactFirstName);
+                        $("#PrimaryContactLastName").val(data.PrimaryContactLastName);
+                        $("#PrimaryContactDirectLine").val(data.PrimaryContactDirectLine);
+                        $("#PrimaryContactFax").val(data.PrimaryContactFax);
+                        $("#PrimaryContactEmail").val(data.PrimaryContactEmail);
+                        $("#PrimaryContactAffilations").val(data.PrimaryContactAffilations);
+                        $("#PrimaryContactTradeOnly").val(data.PrimaryContactTradeOnly);
+                        $("#SecondaryContactFirstName").val(data.SecondaryContactFirstName);
+                        $("#SecondaryContactLastName").val(data.SecondaryContactLastName);
+                        $("#SecondaryContactDirectLine").val(data.SecondaryContactDirectLine);
+                        $("#SecondaryContactFax").val(data.SecondaryContactFax);
+                        $("#SecondaryContactEmail").val(data.SecondaryContactEmail);
+                        $("#SecondaryContactAffilations").val(data.SecondaryContactAffilations);
+                        $("#SecondaryContactTradeOnly").val(data.SecondaryContactTradeOnly);
+                        $("#TertiaryContactFirstName").val(data.TertiaryContactFirstName);
+                        $("#TertiaryContactLastName").val(data.TertiaryContactLastName);
+                        $("#TertiaryContactDirectLine").val(data.TertiaryContactDirectLine);
+                        $("#TertiaryContactFax").val(data.TertiaryContactFax);
+                        $("#TertiaryContactEmail").val(data.TertiaryContactEmail);
+                        $("#TertiaryContactAffilations").val(data.TertiaryContactAffilations);
+                        $("#TertiaryContactTradeOnly").val(data.TertiaryContactTradeOnly);
+                        $("#Description").val(data.Description);
+
+                        $("#AllCategories").val(data.lstAllCategories);
+                        $("#AllCategories").multiselect("refresh");
+
+                        if (data.PartnerType == "MVPLP") {
+                            $("#PartnerType").prop("checked", true);
+                        }
+                        else {
+                            $("#PartnerType").prop("checked", false);
+                        }
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error');
+                }
+            });
+        }
+
+        function fnEditEvent(elm) {
+            $("#btnGoToNewEvent").css('display', 'none');
+            $("#btnBackToEvent").css('display', 'block');
+            $("#NewEventdiv").css('display', 'block');
+            $("#EventListingdiv").css('display', 'none');
+
+            var $elm = $(elm);
+            var idData = $elm.attr("id").split('editEvent');
+            var EventId = idData[1];
+
+            $("#EventTitle").val($("#eventTitle" + EventId).text());
+            $("#ShortDescription").val($("#eventdesc" + EventId).text());
+            $("#EventDescription").val($("#eventDetails" + EventId).text());
+            $("#EventId").val(EventId);
+            var fullPath = $("#eventImage" + EventId).text();
+            var filename = fullPath.replace(/^.*[\\\/]/, '')
+            $("#EventImage").val(filename);
+            var imgsrc = $("#eventImage" + EventId).text();
+            $("#ImgEvent").attr("src", imgsrc);
+            //$('html, body').animate({ scrollTop: '0px' }, 300);
+        }
+
+        function fnDeleteEvent(elm) {
+            //$('#DeleteModal').modal();
+            // $('#deletebtn').click(function () {
+            //  $('#DeleteModal').hide();
+            if (confirm("Are you sure, you want to delete the record?")) {
+                var $elm = $(elm);
+                var idData = $elm.attr("id").split('deleteEvent');
+
+                var url = '../SuperAdmin/DeleteEvent';
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { id: idData[1] },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#events' + idData[1]).remove();
+                        //TO DO: Success Model
+
+                        $("#SuccessDeleteAlert").css('display', 'block');
+                        $("#SuccessSaveAlert").css('display', 'none');
+                        // $('html, body').animate({ scrollTop: '0px' }, 300);
+                        //$('#SuccessDeleteModal').modal();
+                        //$('#confirmedDelete').click(function () {
+                        //  $('#SuccessDeleteModal').hide();
+                        //});
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error');
+                    }
+
+                });
+            }//);
+        }
+
+        function GetDate(date) {
+
+            var d = new Date(date);
+
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+
+            //var output = d.getFullYear() + '/' +
+            //(month < 10 ? '0' : '') + month + '/' +
+            //(day < 10 ? '0' : '') + day;
+
+
+            var output = (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day + '/' + d.getFullYear();
+            debugger;
+            //var now = new Date(date);
+            ////var now = new Date("23-Apr-2016");
+            //var day = ("0" + now.getDate()).slice(-2);
+            //var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            //var today = now.getFullYear() + "-" + (month) + "-" + (day);
+            return output;
+        }
+
+        function ConvertDate(date) {
+            debugger;
+            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            var dateString = date.substr(6);
+            var currentTime = new Date(parseInt(dateString));
+            var month = currentTime.getMonth() + 1;
+            var day = currentTime.getDate();
+            var year = currentTime.getFullYear();
+            var date = day + "/" + month + "/" + year;
+            return day + "-" + monthNames[month - 1] + "-" + year;
+        }
+
+        function SaveImage() {
+            debugger;
+            var form = $('#frmPLPCompanyInfo')[0];
+
+            var data = new FormData(form);
+
+            var files = $("#fileUpload1").get(0).files;
+            var filepath = "";
+            // Add the uploaded image content to the form data collection
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+                // Make Ajax request with the contentType = false, and procesDate = false
+
+                var url = '../SuperAdmin/UploadFile';
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: data,
+                    //dataType: 'json',
+                    success: function (data) {
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error');
+                    }
+                });
+
+                return files[0];
+            }
+            return null;
+
+        }
+
+        function SaveImage1() {
+            debugger;
+            var form = $('#frmAddEvent')[0];
+            var data = new FormData(form);
+
+            var files = $("#fileUpload").get(0).files;
+            var filepath = "";
+            // Add the uploaded image content to the form data collection
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+                // Make Ajax request with the contentType = false, and procesDate = false
+
+                var url = '../SuperAdmin/UploadFile';
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: data,
+                    //dataType: 'json',
+                    success: function (data) {
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error');
+                    }
+                });
+
+                return files[0];
+            }
+            return null;
+
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function fnSortCompanies() {
+            debugger;
+            var companyname = $("#CompanySearchByName").val();
+            var sortorder = $("#sortCompanyName").val();
+            var sortcol = $("#SortColumnComapny").val();
+
+            if (sortorder == "asc") {
+                sortorder = "desc"
+            }
+
+            var categoryid = null;
+
+
+            if (sortorder == "desc") {
+                sortorder = "asc"
+            }
+            $("#sortCompanyName").val(sortorder);
+            var PartnerType = null;
+            var Status = null;
+            var type = $('#ddlCategory option:selected').attr('data-type');
+            if (type == "category") {
+                CategoryId = $('#ddlCategory option:selected').val();
+            }
+            else if (type == "status") {
+                Status = $('#ddlCategory option:selected').val();
+            }
+            else if (type == "partnertype") {
+                PartnerType = $('#ddlCategory option:selected').val();
+            }
+
+            fnGetAllCompanies(companyname, PartnerType, Status, sortorder, categoryid);
+
+        }
+
+
+
+    </script>
+}

@@ -1,0 +1,137 @@
+﻿@model List<Proforma.Areas.Admin.ViewModels.ProformaEventsModel>
+
+<div role="tabpanel" class="tab-pane" id="events">
+    <div class="general-info-wrap prd-cap-wrap padding-btn-0">
+        <ul class="general-info-from-wrap padding-btn-40 clearfix">
+            <li>
+                <div class="field-group">
+                    <a id="btnGoToNewEvent" class="event-add-btn">Add New Event</a>
+                    <a id="btnBackToEvent" class="event-add-btn" style="display:none;">Back To Events</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="prd-cap-list-wrap events-list-wrap" id="EventListingdiv">
+        <ul id="lstProformaEvents">
+            <li>
+                <ul class="prd-cap-list-hdr">
+                    <li>Event Name</li>
+                    <li>Short Description</li>
+                    <li>Description</li>
+                    <li></li>
+                </ul>
+            </li>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    string desc = item.EventDescription;
+                    if (null != item.EventDescription)
+                    {
+                        if (item.EventDescription.Length > 150)
+                        {
+                            desc = item.EventDescription.Substring(0, 150);
+                        }
+                    }
+                    var EditId = "editEvent" + item.EventId;
+                    var DeleteId = "deleteEvent" + item.EventId;
+                    var DescId = "eventDetails" + item.EventId;
+                    var eventDate = "eventDate" + item.EventId;
+                    var eventTitle = "eventTitle" + item.EventId;
+                    var eventList = "events" + item.EventId;
+                    var eventImage = "eventImage" + item.EventId;
+                    var eventshortdesc = "eventdesc" + item.EventId;
+                    <li id="@eventList">
+                        <ul class="prd-cap-list-dtl">
+                            <li id="@eventTitle">@item.EventTitle</li>
+                            @*<li id="@eventDate">@item.EventStartDate  -  @item.EventEndDate</li>*@
+                            <li id="@eventshortdesc">@item.ShortDescription</li>
+                            <li id="@DescId">@desc</li>
+                            <li><a id="@DeleteId" onclick="fnDeleteEvent(this)"><img src="~/Content/images/delete-icon.png" alt="Delete"></a></li>
+                            <li><a id="@EditId" onclick="fnEditEvent(this)"><img src="~/Content/images/edit-icon.png" alt="Edit"></a></li>
+                            <li id="@eventImage" style="display:none">@item.EventImage</li>
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <div class="general-info-wrap padding-btn-0" id="NewEventdiv" style="display:none;">
+        <form id="frmAddEvent" method="post">
+            <ul class="general-info-from-wrap">
+                <li>
+                    <div class="field-group file-upload" style="height: 347px;">
+                        <input type="hidden" id="EventId" name="EventId" value="0" />
+                        <input type="hidden" id="EventImage" name="EventImage" />
+                        <input type="hidden" id="EventStartDate" name="EventStartDate" />
+                        <input type="hidden" id="EventEndDate" name="EventEndDate" />
+                        <input type="file" id="fileUpload" name="fileUpload" accept="image/*" />
+                        <img id="ImgEvent" />
+                        @*<a href="javascript:void(0);" class="upload-logo">Upload logo</a>
+                            <span>754 x 276 pxl</span>*@
+                    </div>
+                </li>
+                <li>
+                    <div class="field-group lg">
+                        <label class="field-label">Event Name</label>
+                        <input type="text" name="EventTitle" id="EventTitle" value="" placeholder="">
+                    </div>
+                </li>
+                <li>
+                    <div class="field-group textarea-wrap">
+                        <label class="field-label">Short Description</label>
+                        <textarea name="ShortDescription" id="ShortDescription"></textarea>
+                    </div>
+                </li>
+                @*<li>
+                    <div class="field-group md date-wrap">                       
+                        <div class='input-group date' id='StartDate'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="fa fa-calendar"></span>
+                            </span>
+                        </div>                       
+                    </div>
+                    <div class="field-group text-wrap">
+                        <p>to</p>
+                    </div>
+                    <div class="field-group md date-wrap no-label">
+                      
+                        <div class='input-group date' id='EndDate'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="fa fa-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </li>*@
+                <li>
+                    <div class="field-group md date-wrap no-label">
+
+                        @*<div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar">
+                                    </span>
+                                </span>
+                            </div>*@
+                    </div>
+                </li>
+                <li>
+                    <div class="field-group textarea-wrap">
+                        <label class="field-label">Description</label>
+                        <textarea name="EventDescription" id="EventDescription"></textarea>
+                    </div>
+                </li>
+                <li>
+                    <div class="field-group submit-wrap">
+                        <input type="button" id="btnAddEvent" name="" value="Submit">
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+

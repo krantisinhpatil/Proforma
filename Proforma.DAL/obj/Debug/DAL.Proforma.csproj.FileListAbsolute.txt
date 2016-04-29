@@ -1,0 +1,10 @@
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Debug\DAL.Proforma.dll.config
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Debug\DAL.Proforma.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Debug\DAL.Proforma.pdb
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Debug\EntityFramework.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Debug\EntityFramework.SqlServer.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Debug\EntityFramework.xml
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\bin\Debug\EntityFramework.SqlServer.xml
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\obj\Debug\DAL.Proforma.csprojResolveAssemblyReference.cache
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\obj\Debug\DAL.Proforma.dll
+E:\Gotcha\App\ProformaWebAPI\DAL.Proforma\obj\Debug\DAL.Proforma.pdb

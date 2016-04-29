@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ProformaEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Model.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Category1" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyMetas">
+      <EntityTypeMapping TypeName="Model.CompanyMeta">
+        <MappingFragment StoreEntitySet="CompanyMeta">
+          <ScalarProperty Name="CompanyMetaId" ColumnName="CompanyMetaId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="FilterCriteriaId" ColumnName="FilterCriteriaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="Model.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="EventSubHeading" ColumnName="EventSubHeading" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feedbacks">
+      <EntityTypeMapping TypeName="Model.Feedback">
+        <MappingFragment StoreEntitySet="Feedback">
+          <ScalarProperty Name="FeedBackID" ColumnName="FeedBackID" />
+          <ScalarProperty Name="FeedBackText" ColumnName="FeedBackText" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FilterCriterias">
+      <EntityTypeMapping TypeName="Model.FilterCriteria">
+        <MappingFragment StoreEntitySet="FilterCriteria">
+          <ScalarProperty Name="FilterCriteriaId" ColumnName="FilterCriteriaId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CriteriaText" ColumnName="CriteriaText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="Model.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="NotificationType" ColumnName="NotificationType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CretedDate" ColumnName="CretedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductsCapabilities">
+      <EntityTypeMapping TypeName="Model.ProductsCapability">
+        <MappingFragment StoreEntitySet="ProductsCapability">
+          <ScalarProperty Name="ProductsCapabilityId" ColumnName="ProductsCapabilityId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProformaGeneralSettings">
+      <EntityTypeMapping TypeName="Model.ProformaGeneralSetting">
+        <MappingFragment StoreEntitySet="ProformaGeneralSettings">
+          <ScalarProperty Name="ProformaGeneralSettingId" ColumnName="ProformaGeneralSettingId" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProformaPrograms">
+      <EntityTypeMapping TypeName="Model.ProformaProgram">
+        <MappingFragment StoreEntitySet="ProformaProgram">
+          <ScalarProperty Name="ProformaProgramId" ColumnName="ProformaProgramId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPDevTeams">
+      <EntityTypeMapping TypeName="Model.SPDevTeam">
+        <MappingFragment StoreEntitySet="SPDevTeam">
+          <ScalarProperty Name="SPDevTeamID" ColumnName="SPDevTeamID" />
+          <ScalarProperty Name="PrimaryContactNumber" ColumnName="PrimaryContactNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPDevTeamMembers">
+      <EntityTypeMapping TypeName="Model.SPDevTeamMember">
+        <MappingFragment StoreEntitySet="SPDevTeamMember">
+          <ScalarProperty Name="SPDevTeamMemberID" ColumnName="SPDevTeamMemberID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupportCenterContacts">
+      <EntityTypeMapping TypeName="Model.SupportCenterContact">
+        <MappingFragment StoreEntitySet="SupportCenterContact">
+          <ScalarProperty Name="SupportCenterContactId" ColumnName="SupportCenterContactId" />
+          <ScalarProperty Name="PrimaryContactNumber" ColumnName="PrimaryContactNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FacebookURL" ColumnName="FacebookURL" />
+          <ScalarProperty Name="TwitterURL" ColumnName="TwitterURL" />
+          <ScalarProperty Name="LinkedInURL" ColumnName="LinkedInURL" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TermsConditions">
+      <EntityTypeMapping TypeName="Model.TermsCondition">
+        <MappingFragment StoreEntitySet="TermsCondition">
+          <ScalarProperty Name="TermsConditionId" ColumnName="TermsConditionId" />
+          <ScalarProperty Name="TCText" ColumnName="TCText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserFavorites">
+      <EntityTypeMapping TypeName="Model.UserFavorite">
+        <MappingFragment StoreEntitySet="UserFavorite">
+          <ScalarProperty Name="UserFavoriteId" ColumnName="UserFavoriteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserNotifications">
+      <EntityTypeMapping TypeName="Model.UserNotification">
+        <MappingFragment StoreEntitySet="UserNotification">
+          <ScalarProperty Name="UserNotificationId" ColumnName="UserNotificationId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProformaUsers">
+      <EntityTypeMapping TypeName="Model.ProformaUser">
+        <MappingFragment StoreEntitySet="ProformaUsers">
+          <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+          <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+          <ScalarProperty Name="TempPassActiveTill" ColumnName="TempPassActiveTill" />
+          <ScalarProperty Name="TempPassword" ColumnName="TempPassword" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="Model.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rushor24hour" ColumnName="Rushor24hour" />
+          <ScalarProperty Name="ProductsNCapabilities" ColumnName="ProductsNCapabilities" />
+          <ScalarProperty Name="ProformaPrograms" ColumnName="ProformaPrograms" />
+          <ScalarProperty Name="ProformaPricing" ColumnName="ProformaPricing" />
+          <ScalarProperty Name="MinorityOwned" ColumnName="MinorityOwned" />
+          <ScalarProperty Name="Certifications" ColumnName="Certifications" />
+          <ScalarProperty Name="UPIC" ColumnName="UPIC" />
+          <ScalarProperty Name="SAGE" ColumnName="SAGE" />
+          <ScalarProperty Name="PPPC" ColumnName="PPPC" />
+          <ScalarProperty Name="PPAI" ColumnName="PPAI" />
+          <ScalarProperty Name="ASI" ColumnName="ASI" />
+          <ScalarProperty Name="Union" ColumnName="Union" />
+          <ScalarProperty Name="PrimaryContactTradeOnly" ColumnName="PrimaryContactTradeOnly" />
+          <ScalarProperty Name="TertiaryContactTradeOnly" ColumnName="TertiaryContactTradeOnly" />
+          <ScalarProperty Name="TertiaryContactAffiliations" ColumnName="TertiaryContactAffiliations" />
+          <ScalarProperty Name="TertiaryContactFax" ColumnName="TertiaryContactFax" />
+          <ScalarProperty Name="TertiaryContactDirectLine" ColumnName="TertiaryContactDirectLine" />
+          <ScalarProperty Name="TertiaryContactEmail" ColumnName="TertiaryContactEmail" />
+          <ScalarProperty Name="TertiaryContactLastName" ColumnName="TertiaryContactLastName" />
+          <ScalarProperty Name="TertiaryContactFirstName" ColumnName="TertiaryContactFirstName" />
+          <ScalarProperty Name="SecondaryContactTradeOnly" ColumnName="SecondaryContactTradeOnly" />
+          <ScalarProperty Name="SecondaryContactAffiliations" ColumnName="SecondaryContactAffiliations" />
+          <ScalarProperty Name="SecondaryContactFax" ColumnName="SecondaryContactFax" />
+          <ScalarProperty Name="SecondaryContactDirectLine" ColumnName="SecondaryContactDirectLine" />
+          <ScalarProperty Name="SecondaryContactExtension" ColumnName="SecondaryContactExtension" />
+          <ScalarProperty Name="SecondaryContactEmail" ColumnName="SecondaryContactEmail" />
+          <ScalarProperty Name="SecondaryContactLastName" ColumnName="SecondaryContactLastName" />
+          <ScalarProperty Name="SecondaryContactFirstName" ColumnName="SecondaryContactFirstName" />
+          <ScalarProperty Name="PrimaryContactAffiliations" ColumnName="PrimaryContactAffiliations" />
+          <ScalarProperty Name="PrimaryContactDirectLine" ColumnName="PrimaryContactDirectLine" />
+          <ScalarProperty Name="PrimaryContactExtension" ColumnName="PrimaryContactExtension" />
+          <ScalarProperty Name="PrimaryContactEmail" ColumnName="PrimaryContactEmail" />
+          <ScalarProperty Name="PrimaryContactLastName" ColumnName="PrimaryContactLastName" />
+          <ScalarProperty Name="PrimaryContactFirstName" ColumnName="PrimaryContactFirstName" />
+          <ScalarProperty Name="QuoteinCanadianDollars" ColumnName="QuoteinCanadianDollars" />
+          <ScalarProperty Name="FOBPointInCanada" ColumnName="FOBPointInCanada" />
+          <ScalarProperty Name="OrderEmail" ColumnName="OrderEmail" />
+          <ScalarProperty Name="ArtEmail" ColumnName="ArtEmail" />
+          <ScalarProperty Name="FTPSite" ColumnName="FTPSite" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="PrimaryContactFax" ColumnName="PrimaryContactFax" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="PartnerType" ColumnName="PartnerType" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
