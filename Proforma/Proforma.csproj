@@ -233,11 +233,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Results\AuthenticationFailureResult.cs" />
-    <Compile Include="Service References\UserVerificationService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Services\IProformaUserService.cs" />
     <Compile Include="Services\ProformaUserService.svc.cs">
       <DependentUpon>ProformaUserService.svc</DependentUpon>
@@ -347,13 +342,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <None Include="Service References\UserVerificationService\ProformaUserService.disco" />
-    <None Include="Service References\UserVerificationService\configuration91.svcinfo" />
-    <None Include="Service References\UserVerificationService\configuration.svcinfo" />
-    <None Include="Service References\UserVerificationService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Services\ProformaUserService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -374,13 +362,6 @@
     <Content Include="Views\Home\ImportExcel.cshtml" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
     <Content Include="Views\Home\CompanyProgramsNProducts.cshtml" />
-    <None Include="Service References\UserVerificationService\ProformaUserService.wsdl" />
-    <None Include="Service References\UserVerificationService\ProformaUserService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UserVerificationService\ProformaUserService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -397,9 +378,6 @@
       <Project>{bb895d76-da02-43de-ac3d-cf31d5a624ed}</Project>
       <Name>Proforma.DAL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UserVerificationService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

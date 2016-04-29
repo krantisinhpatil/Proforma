@@ -32,7 +32,7 @@
         <EntityTypeShape EntityType="SourcingGuideDevModel.CompanyCategory" Width="1.5" PointX="15.25" PointY="7.75" />
         <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_CompanyCategory_Pro_Category" />
         <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_CompanyCategory_Pro_Company" />
-        <EntityTypeShape EntityType="SourcingGuideDevModel.Pro_ProExclusive" Width="1.5" PointX="8.25" PointY="14.125" />
+        <EntityTypeShape EntityType="SourcingGuideDevModel.ProExclusive" Width="1.5" PointX="8.25" PointY="14.125" />
         <AssociationConnector Association="SourcingGuideDevModel.FK_Pro_ProExclusive_Pro_Company" />
         </Diagram>
     </edmx:Diagrams>

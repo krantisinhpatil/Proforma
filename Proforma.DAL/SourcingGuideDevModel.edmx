@@ -467,10 +467,10 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="Pro_CompanyCategory" EntitySet="CompanyCategories" />
           </AssociationSet>
-          <EntitySet Name="Pro_ProExclusive" EntityType="SourcingGuideDevModel.Pro_ProExclusive" />
+          <EntitySet Name="ProExclusives" EntityType="SourcingGuideDevModel.ProExclusive" />
           <AssociationSet Name="FK_Pro_ProExclusive_Pro_Company" Association="SourcingGuideDevModel.FK_Pro_ProExclusive_Pro_Company">
             <End Role="Company" EntitySet="Companies" />
-            <End Role="Pro_ProExclusive" EntitySet="Pro_ProExclusive" />
+            <End Role="Pro_ProExclusive" EntitySet="ProExclusives" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Category">
@@ -836,7 +836,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Pro_ProExclusive">
+        <EntityType Name="ProExclusive">
           <Key>
             <PropertyRef Name="ProExclusiveId" />
           </Key>
@@ -856,7 +856,7 @@
         </EntityType>
         <Association Name="FK_Pro_ProExclusive_Pro_Company">
           <End Type="SourcingGuideDevModel.Company" Role="Company" Multiplicity="1" />
-          <End Type="SourcingGuideDevModel.Pro_ProExclusive" Role="Pro_ProExclusive" Multiplicity="*" />
+          <End Type="SourcingGuideDevModel.ProExclusive" Role="Pro_ProExclusive" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
               <PropertyRef Name="CompanyId" />
@@ -1166,8 +1166,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Pro_ProExclusive">
-            <EntityTypeMapping TypeName="SourcingGuideDevModel.Pro_ProExclusive">
+          <EntitySetMapping Name="ProExclusives">
+            <EntityTypeMapping TypeName="SourcingGuideDevModel.ProExclusive">
               <MappingFragment StoreEntitySet="Pro_ProExclusive">
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />

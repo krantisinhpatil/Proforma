@@ -5,12 +5,7 @@ using System.Web;
 
 namespace Proforma.ViewModel
 {
-    public class CategoryViewModel
-    {
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public List<FilterCriteriaViewModel> FilterCriterias { get; set; }
-    }
+    #region Company
 
     public class CompanyViewModel
     {
@@ -29,30 +24,9 @@ namespace Proforma.ViewModel
         public decimal? Longitude { get; set; }
     }
 
-    public class MVPLPCompanyViewModel
-    {
-        public int CompanyId { get; set; }
-        public string CompanyName { get; set; }
-        public string PartnerType { get; set; }
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
-        public string Phone1 { get; set; }
-        public string Phone2 { get; set; }
-        public string Description { get; set; }
-        public bool IsFavourite { get; set; }
-        public decimal? Latitude { get; set; }
-        public decimal? Longitude { get; set; }
-        public int CategoryId { get; set; }
-    }
-
-    
-
     public class CompanySearchModel
     {
         public int CompanyId { get; set; }
-        //public int? CategoryId { get; set; }
         public List<CompanyCategories> CompanyCategories { get; set; }
         public string CompanyName { get; set; }
         public string PartnerType { get; set; }
@@ -72,7 +46,6 @@ namespace Proforma.ViewModel
     {
         public int CompanyId { get; set; }
         public List<CompanyCategories> CompanyCategories { get; set; }
-        //public int? CategoryId { get; set; }
         public string PartnerType { get; set; }
         public string CompanyName { get; set; }
         public string StreetAddress { get; set; }
@@ -130,7 +103,6 @@ namespace Proforma.ViewModel
 
     public class CompanyCoordinatesModel
     {
-
         public string MESSAGE { get; set; }
         public string Flag { get; set; }
         public List<ComapnyCoordinatesDetails> ComapnyCoordinates { get; set; }
@@ -152,7 +124,6 @@ namespace Proforma.ViewModel
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public List<CompanyCategories> CompanyCategories { get; set; }
-        //public int? CategoryId { get; set; }
     }
 
     public class CompanyCategories
@@ -165,7 +136,61 @@ namespace Proforma.ViewModel
     {
         public string Offer { get; set; }
     }
-    public class ProductsNCapability {
+    public class ProductsNCapability
+    {
         public string Product { get; set; }
     }
-}
+
+    #endregion
+
+    #region Category
+
+    public class CategoryViewModel
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public List<FilterCriteriaViewModel> FilterCriterias { get; set; }
+    }
+
+    #endregion
+
+    #region MVPLP
+
+    public class MVPLPCompanyViewModel
+    {
+        public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
+        public string PartnerType { get; set; }
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string ZipCode { get; set; }
+        public string Phone1 { get; set; }
+        public string Phone2 { get; set; }
+        public string Description { get; set; }
+        public bool IsFavourite { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
+        public int CategoryId { get; set; }
+    }
+
+    #endregion
+
+    #region ProExclusives
+
+    public class ProExclusiveViewModel
+    {
+        public int ProExclusiveId { get; set; }
+        public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
+        public string ThumbnailPath { get; set; }
+        public string PDFTitle { get; set; }
+        public string PDFFilePath { get; set; }
+        public DateTime? ValidFrom { get; set; }
+        public DateTime? ValidTill { get; set; }
+
+    }        
+    
+    #endregion
+
+    }

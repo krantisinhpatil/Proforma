@@ -14,24 +14,24 @@ namespace Proforma.Controllers
         SourcingGuideDevEntities _db = new SourcingGuideDevEntities();
 
         [HttpGet]
-        public HttpResponseMessage SearchCompanies(string keyword,long? UserId=0)
+        public HttpResponseMessage SearchCompanies(string keyword, long? UserId = 0)
         {
             SearchCompanyResponse _CompanyResponse = new SearchCompanyResponse();
             _CompanyResponse.MESSAGE = "Companies";
             _CompanyResponse.Flag = "false";
             var arrCompanyIds = new List<UserFavorite>();
-            if (UserId > 0 )
+            if (UserId > 0)
             {
                 arrCompanyIds = _db.UserFavorites.Where(a => a.UserId == UserId).ToList();
             }
 
-           var lstCompanies = _db.Companies.Where(m => m.CompanyName.ToLower().Contains(keyword) || m.Description.ToLower().Contains(keyword)).ToList();
+            var lstCompanies = _db.Companies.Where(m => m.CompanyName.ToLower().Contains(keyword) || m.Description.ToLower().Contains(keyword)).ToList();
             List<CompanySearchModel> lstCompanyVM = new List<CompanySearchModel>();
             if (lstCompanies != null)
             {
                 _CompanyResponse.Flag = "true";
 
-               
+
 
                 for (int i = 0; i < lstCompanies.Count(); i++)
                 {
@@ -61,7 +61,7 @@ namespace Proforma.Controllers
                     _CompanyViewModel.State = lstCompanies[i].State;
                     _CompanyViewModel.Phone1 = lstCompanies[i].Phone1;
                     _CompanyViewModel.Phone2 = lstCompanies[i].Phone2;
-                    _CompanyViewModel.Description = "" + lstCompanies[i].Description;
+                    _CompanyViewModel.Description = string.IsNullOrEmpty(lstCompanies[i].Description) ? "Description is not available." : lstCompanies[i].Description;
                     _CompanyViewModel.IsFavourite = false;
                     _CompanyViewModel.Latitude = null == lstCompanies[i].Latitude ? 0 : lstCompanies[i].Latitude;
                     _CompanyViewModel.Longitude = null == lstCompanies[i].Longitude ? 0 : lstCompanies[i].Longitude;

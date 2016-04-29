@@ -21,7 +21,7 @@ namespace Proforma.DAL
             this.Pro_ProductsCapability = new HashSet<ProductsCapability>();
             this.Pro_ProformaProgram = new HashSet<ProformaProgram>();
             this.Pro_CompanyCategory = new HashSet<CompanyCategory>();
-            this.Pro_ProExclusive = new HashSet<Pro_ProExclusive>();
+            this.Pro_ProExclusive = new HashSet<ProExclusive>();
         }
     
         public int CompanyId { get; set; }
@@ -91,6 +91,6 @@ namespace Proforma.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyCategory> Pro_CompanyCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pro_ProExclusive> Pro_ProExclusive { get; set; }
+        public virtual ICollection<ProExclusive> Pro_ProExclusive { get; set; }
     }
 }

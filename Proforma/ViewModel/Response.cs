@@ -5,25 +5,13 @@ using System.Web;
 
 namespace Proforma.ViewModel
 {
-    public class CategoryResponse
-    {
-        public string MESSAGE { get; set; }
-        public string Flag { get; set; }
-        public List<CategoryViewModel> Categories { get; set; }
-    }
+    #region Company
 
     public class CompanyResponse
     {
         public string MESSAGE { get; set; }
         public string Flag { get; set; }
         public List<CompanyViewModel> Companies { get; set; }
-    }
-
-    public class MVPLPCompanyResponse
-    {
-        public string MESSAGE { get; set; }
-        public string Flag { get; set; }
-        public List<MVPLPCompanyViewModel> Companies { get; set; }
     }
 
     public class SearchCompanyResponse
@@ -40,12 +28,51 @@ namespace Proforma.ViewModel
         public CompanyDetailsViewModel CompanyDetails { get; set; }
     }
 
-    public class FilterCriteriaResponse
+    public class AddToFavouritesResponse
     {
         public string MESSAGE { get; set; }
         public string Flag { get; set; }
-        public List<FilterCriteriaViewModel> Criteria { get; set; }
     }
+
+    #endregion
+
+    #region Category
+
+    public class CategoryResponse
+    {
+        public string MESSAGE { get; set; }
+        public string Flag { get; set; }
+        public List<CategoryViewModel> Categories { get; set; }
+    }
+
+    #endregion
+
+    #region MVPLP
+
+    public class MVPLPCompanyResponse
+    {
+        public string MESSAGE { get; set; }
+        public string Flag { get; set; }
+        public List<MVPLPCompanyViewModel> Companies { get; set; }
+    }
+
+    #endregion
+
+    #region ProExclusives
+    public class ProExclusiveResponse
+    {
+        public ProExclusiveResponse()
+        {
+            ProExclusives = new List<ProExclusiveViewModel>();
+        }
+        public string MESSAGE { get; set; }
+        public string Flag { get; set; }
+        public List<ProExclusiveViewModel> ProExclusives { get; set; }
+    }
+
+    #endregion
+
+    #region  Account
 
     public class EmailVerificationResponse
     {
@@ -80,10 +107,15 @@ namespace Proforma.ViewModel
         public string Flag { get; set; }
     }
 
-    public class AddToFavouritesResponse
+    #endregion
+
+    #region Other
+
+    public class FilterCriteriaResponse
     {
         public string MESSAGE { get; set; }
         public string Flag { get; set; }
+        public List<FilterCriteriaViewModel> Criteria { get; set; }
     }
 
     public class PushResponse
@@ -92,9 +124,11 @@ namespace Proforma.ViewModel
         public string Flag { get; set; }
         public List<PushNotification> Categories { get; set; }
     }
-    
 
-    /************************************************/
+    #endregion
+
+    #region Helper Classes
+
     public class AddressComponent
     {
         public string long_name { get; set; }
@@ -147,4 +181,5 @@ namespace Proforma.ViewModel
         public List<Result> results { get; set; }
         public string status { get; set; }
     }
+    #endregion
 }

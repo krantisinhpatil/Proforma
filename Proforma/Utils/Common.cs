@@ -17,7 +17,7 @@ namespace Proforma.Utils
             _CompanyViewModel.PartnerType = "" + company.PartnerType;
             _CompanyViewModel.CompanyName = "" + company.CompanyName;
             _CompanyViewModel.StreetAddress = "" + company.StreetAddress;
-            _CompanyViewModel.City = ""+company.City;
+            _CompanyViewModel.City = "" + company.City;
             _CompanyViewModel.State = "" + company.State;
             _CompanyViewModel.ZipCode = "" + company.ZipCode;
             _CompanyViewModel.Phone1 = "" + company.Phone1;
@@ -141,6 +141,21 @@ namespace Proforma.Utils
             _CompanyViewModel.Longitude = null == company.Longitude ? 0 : company.Longitude;
 
             return _CompanyViewModel;
+        }
+
+        public static ProExclusiveViewModel GetProExclusiveVM(ProExclusive proExclusive)
+        {
+            return new ProExclusiveViewModel()
+            {
+                ProExclusiveId = proExclusive.ProExclusiveId,
+                CompanyId = proExclusive.CompanyId,
+                CompanyName = proExclusive.CompanyName,
+                PDFFilePath = proExclusive.PDFFilePath,
+                PDFTitle = proExclusive.PDFTitle,
+                ThumbnailPath = proExclusive.ThumbnailPath,
+                ValidFrom = proExclusive.ValidFrom,
+                ValidTill = proExclusive.ValidTill
+            };
         }
     }
 }

@@ -30,24 +30,23 @@ namespace Proforma.Areas.Admin.Controllers
             ProformaPLPs.PLPCompanies = GetCompanies();
             model.PLPs = ProformaPLPs;
 
-            List<ProformaEventsModel> ProformaEvents = GetEvents();
-            model.Events = ProformaEvents;
+            model.Events = GetEvents();
 
-            ProformaOwnersModel ProformaOwners = new ProformaOwnersModel();
-            model.Owners = ProformaOwners;
+            model.Owners = new ProformaOwnersModel();
 
-            ProformaAnalyticsModel ProformaAnalytics = new ProformaAnalyticsModel();
-            model.Analytics = ProformaAnalytics;
+            model.Analytics = new ProformaAnalyticsModel();
+
+            model.ProExclusives = GetProExclusives();
 
             return View(model);
         }
 
-        public List<PLPCompanySortedModel> GetCompanies(int? CategoryId=0)
+        public List<PLPCompanySortedModel> GetCompanies(int? CategoryId = 0)
         {
             List<PLPCompanySortedModel> lstPLPCompanies = new List<PLPCompanySortedModel>();
             lstPLPCompanies = GetAllCompanies();
             //var companies = _db.Companies.Where(a => a.Status != "Inactive").OrderByDescending(a => a.Status == "New").ToList();
-           // lstPLPCompanies = GetPLPCompanyData(companies);
+            // lstPLPCompanies = GetPLPCompanyData(companies);
             return lstPLPCompanies;
         }
 
@@ -55,7 +54,7 @@ namespace Proforma.Areas.Admin.Controllers
         {
             var sortcolumn = "CompanyName";
             List<PLPCompanySortedModel> lstPLPCompanies = new List<PLPCompanySortedModel>();
-            if(string.IsNullOrEmpty(CompanyName))
+            if (string.IsNullOrEmpty(CompanyName))
             {
                 CompanyName = null;
             }
@@ -107,7 +106,7 @@ namespace Proforma.Areas.Admin.Controllers
         //    return Json(lstPLPCompanies, JsonRequestBehavior.AllowGet);
         //}
 
-        public JsonResult GetSortedCompanies(string CompanyName=null,string PartnerType=null,string Status=null,string SortOrder=null, int? CategoryId = null)
+        public JsonResult GetSortedCompanies(string CompanyName = null, string PartnerType = null, string Status = null, string SortOrder = null, int? CategoryId = null)
         {
             //var sortcolumn = "CompanyName";
             List<PLPCompanySortedModel> lstPLPCompanies = new List<PLPCompanySortedModel>();
@@ -160,14 +159,14 @@ namespace Proforma.Areas.Admin.Controllers
         public JsonResult GetPLPCompanyInfo(int id)
         {
             PLPCompanyInfoModel model = new PLPCompanyInfoModel();
-           
-            if(id>0)
+
+            if (id > 0)
             {
                 var _company = _db.Companies.FirstOrDefault(a => a.CompanyId == id);
-                if(null!= _company)
+                if (null != _company)
                 {
                     model.ASI = _company.ASI;
-                   // model.CategoryId = _company.CategoryId;
+                    // model.CategoryId = _company.CategoryId;
                     model.City = _company.City;
                     model.CompanyId = _company.CompanyId;
                     model.CompanyLogo = _company.Company_Logo;
@@ -204,13 +203,13 @@ namespace Proforma.Areas.Admin.Controllers
                     model.Description = _company.Description;
                     model.lstAllCategories = new List<int>();
                     var categories = _db.CompanyCategories.Where(a => a.CompanyId == _company.CompanyId);
-                    if(null!= categories && categories.Count()>0)
+                    if (null != categories && categories.Count() > 0)
                     {
-                        foreach(var cat in categories)
+                        foreach (var cat in categories)
                         {
                             model.lstAllCategories.Add(cat.CategoryId);
                         }
-                    }                  
+                    }
                 }
             }
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -219,7 +218,7 @@ namespace Proforma.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult SavePLPCompanyInfo(string PLPCompanyInfoData)
         {
-            
+
             string finalString = string.Empty;
             string original = PLPCompanyInfoData;
 
@@ -242,7 +241,7 @@ namespace Proforma.Areas.Admin.Controllers
                 }
             }
             var serializer = new JavaScriptSerializer();
-           
+
             var companyInfo = serializer.Deserialize(finalString, typeof(PLPCompanyInfoModel));
             PLPCompanyInfoModel model = (dynamic)(companyInfo);
 
@@ -346,6 +345,34 @@ namespace Proforma.Areas.Admin.Controllers
             return lstEvents;
         }
 
+        public List<ProExclusiveModel> GetProExclusives()
+        {
+            var proExclusiveModels = new List<ProExclusiveModel>();
+
+            var proExclusives = _db.ProExclusives.ToList();
+            foreach (var proExclusive in proExclusives)
+            {
+                var proExclusiveModel = new ProExclusiveModel()
+                {
+                    ProExclusiveId = proExclusive.ProExclusiveId,
+                    CompanyId = proExclusive.CompanyId,
+                    CompanyName = proExclusive.CompanyName,
+                    PDFFilePath = proExclusive.PDFFilePath,
+                    PDFTitle = proExclusive.PDFTitle,
+                    ThumbnailPath = proExclusive.ThumbnailPath,
+                    ValidFrom = proExclusive.ValidFrom,
+                    ValidTill = proExclusive.ValidTill,
+
+                    CreatedBy = proExclusive.CreatedBy,
+                    CreatedDate = proExclusive.CreatedDate,
+                    ModifiedBy = proExclusive.ModifiedBy,
+                    ModifiedDate = proExclusive.ModifiedDate
+                };
+                proExclusiveModels.Add(proExclusiveModel);
+            }
+            return proExclusiveModels;
+        }
+
         [HttpPost]
         public JsonResult SaveEvent(string EventInfo)
         {
@@ -353,7 +380,7 @@ namespace Proforma.Areas.Admin.Controllers
             var eventInfo = serializer.Deserialize(EventInfo, typeof(ProformaEventsModel));
             ProformaEventsModel model = (dynamic)(eventInfo);
             Event _event = new Event();
-            if (model.EventId>0)
+            if (model.EventId > 0)
             {
                 _event = _db.Events.FirstOrDefault(a => a.EventId == model.EventId);
                 _event.ModifiedDate = DateTime.Now;
@@ -363,7 +390,7 @@ namespace Proforma.Areas.Admin.Controllers
                 _event.CreatedDate = DateTime.Now;
                 _event.EventSubHeading = "";
             }
-            
+
             _event.EventTitle = model.EventTitle;
             _event.Description = model.EventDescription;
             _event.EventSubHeading = model.ShortDescription;
@@ -379,7 +406,7 @@ namespace Proforma.Areas.Admin.Controllers
             {
                 _db.Events.Add(_event);
             }
-              
+
             _db.SaveChanges();
             ProformaEventResponseModel response = new ProformaEventResponseModel();
             response.EventId = _event.EventId;
@@ -400,6 +427,72 @@ namespace Proforma.Areas.Admin.Controllers
             if (null != record)
             {
                 _db.Events.Remove(record);
+                _db.SaveChanges();
+                return Json("Success", JsonRequestBehavior.AllowGet);
+            }
+            return Json("Fail", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SaveProExclusive(string strProExclusive)
+        {
+            var serializer = new JavaScriptSerializer();
+            var proExclusiveModel = serializer.Deserialize(strProExclusive, typeof(ProExclusiveModel));
+            ProExclusiveModel model = (dynamic)(proExclusiveModel);
+
+            ProExclusive _ProExclusive = new ProExclusive();
+
+            if (_ProExclusive.ProExclusiveId > 0)
+            {
+                _ProExclusive = _db.ProExclusives.FirstOrDefault(a => a.ProExclusiveId == model.ProExclusiveId);
+                _ProExclusive.ModifiedDate = DateTime.Now;
+                _ProExclusive.ModifiedBy = 1; // To-Do : Pass Logged In Users Id
+
+                model.ModifiedDate = DateTime.Now;
+                model.ModifiedBy = 1; // To-Do : Pass Logged In Users Id
+
+            }
+            else
+            {
+                _ProExclusive.CreatedDate = DateTime.Now;
+                _ProExclusive.CreatedBy = 1; // To-Do : Pass Logged In Users Id
+
+                model.CreatedDate = DateTime.Now;
+                model.CreatedBy = 1; // To-Do : Pass Logged In Users Id
+            }
+
+            _ProExclusive.CompanyId = model.CompanyId;
+            _ProExclusive.CompanyName = model.CompanyName;
+            _ProExclusive.ThumbnailPath = "http://psgapp.proforma.com//Uploads/" + model.ThumbnailPath;
+            _ProExclusive.PDFTitle = model.PDFTitle;
+            _ProExclusive.PDFFilePath = "http://psgapp.proforma.com//Uploads/" + model.PDFFilePath;
+            _ProExclusive.ValidFrom = DateTime.Now;
+
+            model.ValidFrom = DateTime.Now;
+
+            _ProExclusive.ValidTill = model.ValidTill;
+            if (model.ProExclusiveId > 0)
+            {
+                _db.Entry(_ProExclusive).State = EntityState.Modified;
+            }
+            else
+            {
+                _db.ProExclusives.Add(_ProExclusive);
+            }
+
+            _db.SaveChanges();
+
+            model.Message = "Success";
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteProExclusive(int id)
+        {
+            var record = _db.ProExclusives.FirstOrDefault(a => a.ProExclusiveId == id);
+            if (null != record)
+            {
+                _db.ProExclusives.Remove(record);
                 _db.SaveChanges();
                 return Json("Success", JsonRequestBehavior.AllowGet);
             }

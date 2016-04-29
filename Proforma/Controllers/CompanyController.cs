@@ -16,6 +16,8 @@ namespace Proforma.Controllers
     {
         SourcingGuideDevEntities _db = new SourcingGuideDevEntities();
 
+        #region Company
+
         //api/Company/GetCompaniesByCategory?Id=1&FilterCriteriaId=2
         [HttpGet]
         public HttpResponseMessage GetCompaniesByCategory(int Id, int? FilterCriteriaId = 0, long? UserId = 0)
@@ -75,7 +77,7 @@ namespace Proforma.Controllers
                         _CompanyViewModel.State = lstCompanies[i].State;
                         _CompanyViewModel.Phone1 = lstCompanies[i].Phone1;
                         _CompanyViewModel.Phone2 = lstCompanies[i].Phone2;
-                        _CompanyViewModel.Description = "" + lstCompanies[i].Description;
+                        _CompanyViewModel.Description = string.IsNullOrEmpty(lstCompanies[i].Description) ? "Description is not available." : lstCompanies[i].Description;
                         _CompanyViewModel.IsFavourite = false;
                         _CompanyViewModel.Latitude = null == lstCompanies[i].Latitude ? 0 : lstCompanies[i].Latitude;
                         _CompanyViewModel.Longitude = null == lstCompanies[i].Longitude ? 0 : lstCompanies[i].Longitude;
@@ -97,6 +99,77 @@ namespace Proforma.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, _CompanyResponse);
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetCompanyDetailsById(int Id)
+        {
+            var company = _db.Companies.FirstOrDefault(o => o.CompanyId == Id);
+            CompanyDetailsResponse objCompanyDetails = new CompanyDetailsResponse();
+            objCompanyDetails.MESSAGE = "Company Details";
+            objCompanyDetails.Flag = "false";
+            if (company != null)
+            {
+                objCompanyDetails.Flag = "true";
+                var _Company = Common.GetCompanyDetails(company);
+                _Company.IsFavourite = false;
+                objCompanyDetails.CompanyDetails = _Company;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, objCompanyDetails);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetCompanyCoordinates()
+        {
+            var _Companies = _db.Companies.ToList();
+            CompanyCoordinatesModel _CompanyCoordinatesModel = new CompanyCoordinatesModel();
+            _CompanyCoordinatesModel.Flag = "false";
+            _CompanyCoordinatesModel.MESSAGE = "Company Coordinates Info";
+            if (null != _Companies && _Companies.Count() > 0)
+            {
+                List<ComapnyCoordinatesDetails> _lstComapnyCoordinates = new List<ComapnyCoordinatesDetails>();
+                _CompanyCoordinatesModel.Flag = "true";
+                foreach (var comp in _Companies)
+                {
+                    ComapnyCoordinatesDetails _ComapnyCoordinates = new ComapnyCoordinatesDetails();
+                    _ComapnyCoordinates.CompanyId = comp.CompanyId;
+                    _ComapnyCoordinates.CompanyName = comp.CompanyName;
+                    _ComapnyCoordinates.PartnerType = comp.PartnerType;
+                    _ComapnyCoordinates.StreetAddress = comp.StreetAddress;
+                    _ComapnyCoordinates.City = comp.City;
+                    _ComapnyCoordinates.State = comp.State;
+                    _ComapnyCoordinates.ZipCode = comp.ZipCode;
+                    _ComapnyCoordinates.Phone1 = comp.Phone1;
+                    _ComapnyCoordinates.Phone2 = comp.Phone2;
+                    _ComapnyCoordinates.Description = string.IsNullOrEmpty(comp.Description) ? "Description is not available." : comp.Description;
+                    _ComapnyCoordinates.IsFavourite = false;
+                    _ComapnyCoordinates.Latitude = null == comp.Latitude ? 0 : comp.Latitude;
+                    _ComapnyCoordinates.Longitude = null == comp.Longitude ? 0 : comp.Longitude;
+                    List<CompanyCategories> lstCompCat = new List<CompanyCategories>();
+                    var companycatategories = _db.CompanyCategories.Where(a => a.CompanyId == comp.CompanyId).ToList();
+                    if (null != companycatategories && companycatategories.Count() > 0)
+                    {
+                        foreach (var cat in companycatategories)
+                        {
+                            CompanyCategories _CompCat = new CompanyCategories();
+                            var categoryname = _db.Categories.FirstOrDefault(c => c.CategoryId == cat.CategoryId);
+                            _CompCat.CategoryId = cat.CategoryId;
+                            _CompCat.CategoryName = categoryname.Category1;
+                            lstCompCat.Add(_CompCat);
+                        }
+                    }
+                    _ComapnyCoordinates.CompanyCategories = lstCompCat;
+
+                    _lstComapnyCoordinates.Add(_ComapnyCoordinates);
+                }
+                _CompanyCoordinatesModel.ComapnyCoordinates = _lstComapnyCoordinates;
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, _CompanyCoordinatesModel);
+        }
+
+        #endregion
+
+        #region MVPLPs
 
         [HttpGet]
         public HttpResponseMessage GetMVPLPCompanies(int? FilterCriteriaId = 0, long? UserId = 0)
@@ -145,7 +218,7 @@ namespace Proforma.Controllers
                     _CompanyViewModel.State = lstCompanies[i].State;
                     _CompanyViewModel.Phone1 = lstCompanies[i].Phone1;
                     _CompanyViewModel.Phone2 = lstCompanies[i].Phone2;
-                    _CompanyViewModel.Description = "" + lstCompanies[i].Description;
+                    _CompanyViewModel.Description = string.IsNullOrEmpty(lstCompanies[i].Description) ? "Description is not available." : lstCompanies[i].Description;
                     _CompanyViewModel.IsFavourite = false;
                     _CompanyViewModel.Latitude = null == lstCompanies[i].Latitude ? 0 : lstCompanies[i].Latitude;
                     _CompanyViewModel.Longitude = null == lstCompanies[i].Longitude ? 0 : lstCompanies[i].Longitude;
@@ -157,21 +230,23 @@ namespace Proforma.Controllers
                             _CompanyViewModel.IsFavourite = true;
                         }
                     }
-                    //List<CompanyCategories> lstCompCat = new List<CompanyCategories>();
+                    /*
+                    List<CompanyCategories> lstCompCat = new List<CompanyCategories>();
 
-                    //var companycatategories = _db.CompanyCategories.Where(a => a.CompanyId == compId).ToList();
+                    var companycatategories = _db.CompanyCategories.Where(a => a.CompanyId == compId).ToList();
 
-                    //if (null != companycatategories && companycatategories.Count() > 0)
-                    //{
-                    //    foreach (var cat in companycatategories)
-                    //    {
-                    //        CompanyCategories _CompCat = new CompanyCategories();
-                    //        var categoryname = _db.Categories.FirstOrDefault(c => c.CategoryId == cat.CategoryId);
-                    //        _CompCat.CategoryId = cat.CategoryId;
-                    //        _CompCat.CategoryName = categoryname.Category1;
-                    //        lstCompCat.Add(_CompCat);
-                    //    }
-                    //}
+                    if (null != companycatategories && companycatategories.Count() > 0)
+                    {
+                        foreach (var cat in companycatategories)
+                        {
+                            CompanyCategories _CompCat = new CompanyCategories();
+                            var categoryname = _db.Categories.FirstOrDefault(c => c.CategoryId == cat.CategoryId);
+                            _CompCat.CategoryId = cat.CategoryId;
+                            _CompCat.CategoryName = categoryname.Category1;
+                            lstCompCat.Add(_CompCat);
+                        }
+                    }
+                    */
                     int catId = 0;
                     var companyCategory = _db.CompanyCategories.FirstOrDefault(cc => cc.CompanyId == compId);
                     if (null != companyCategory)
@@ -190,74 +265,33 @@ namespace Proforma.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, _CompanyResponse);
         }
 
-        [HttpGet]
-        //[ActionName("GetCompanyDetailsById")]
-        public HttpResponseMessage GetCompanyDetailsById(int Id)
-        {
-            var company = _db.Companies.FirstOrDefault(o => o.CompanyId == Id);
-            CompanyDetailsResponse objCompanyDetails = new CompanyDetailsResponse();
-            objCompanyDetails.MESSAGE = "Company Details";
-            objCompanyDetails.Flag = "false";
-            if (company != null)
-            {
-                objCompanyDetails.Flag = "true";
-                var _Company = Common.GetCompanyDetails(company);
-                _Company.IsFavourite = false;
-                objCompanyDetails.CompanyDetails = _Company;
-            }
+        #endregion
 
-            return Request.CreateResponse(HttpStatusCode.OK, objCompanyDetails);
-        }
+        #region ProExclusives
 
         [HttpGet]
-        public HttpResponseMessage GetCompanyCoordinates()
+        public HttpResponseMessage GetProExclusives()
         {
-            var _Companies = _db.Companies.ToList();
-            CompanyCoordinatesModel _CompanyCoordinatesModel = new CompanyCoordinatesModel();
-            _CompanyCoordinatesModel.Flag = "false";
-            _CompanyCoordinatesModel.MESSAGE = "Company Coordinates Info";
-            if (null != _Companies && _Companies.Count() > 0)
+            ProExclusiveResponse _Response = new ProExclusiveResponse();
+            _Response.MESSAGE = "ProExclusives";
+            _Response.Flag = "true";
+
+            try
             {
-                List<ComapnyCoordinatesDetails> _lstComapnyCoordinates = new List<ComapnyCoordinatesDetails>();
-                _CompanyCoordinatesModel.Flag = "true";
-                foreach (var comp in _Companies)
+                var proExclusives = _db.ProExclusives.Where(p => p.ValidTill >= DateTime.Now);
+                foreach (var proExclusive in proExclusives)
                 {
-                    ComapnyCoordinatesDetails _ComapnyCoordinates = new ComapnyCoordinatesDetails();
-                    _ComapnyCoordinates.CompanyId = comp.CompanyId;
-                    _ComapnyCoordinates.CompanyName = comp.CompanyName;
-                    _ComapnyCoordinates.PartnerType = comp.PartnerType;
-                    _ComapnyCoordinates.StreetAddress = comp.StreetAddress;
-                    _ComapnyCoordinates.City = comp.City;
-                    _ComapnyCoordinates.State = comp.State;
-                    _ComapnyCoordinates.ZipCode = comp.ZipCode;
-                    _ComapnyCoordinates.Phone1 = comp.Phone1;
-                    _ComapnyCoordinates.Phone2 = comp.Phone2;
-                    _ComapnyCoordinates.Description = "" + comp.Description;
-                    _ComapnyCoordinates.IsFavourite = false;
-                    _ComapnyCoordinates.Latitude = null == comp.Latitude ? 0 : comp.Latitude;
-                    _ComapnyCoordinates.Longitude = null == comp.Longitude ? 0 : comp.Longitude;
-                    List<CompanyCategories> lstCompCat = new List<CompanyCategories>();
-                    var companycatategories = _db.CompanyCategories.Where(a => a.CompanyId == comp.CompanyId).ToList();
-                    if (null != companycatategories && companycatategories.Count() > 0)
-                    {
-                        foreach (var cat in companycatategories)
-                        {
-                            CompanyCategories _CompCat = new CompanyCategories();
-                            var categoryname = _db.Categories.FirstOrDefault(c => c.CategoryId == cat.CategoryId);
-                            _CompCat.CategoryId = cat.CategoryId;
-                            _CompCat.CategoryName = categoryname.Category1;
-                            lstCompCat.Add(_CompCat);
-                        }
-                    }
-                    _ComapnyCoordinates.CompanyCategories = lstCompCat;
-                    //_ComapnyCoordinates.CategoryId = null == comp.CategoryId ? 0 : comp.CategoryId;
-                    _lstComapnyCoordinates.Add(_ComapnyCoordinates);
+                    _Response.ProExclusives.Add(Common.GetProExclusiveVM(proExclusive));
                 }
-                _CompanyCoordinatesModel.ComapnyCoordinates = _lstComapnyCoordinates;
             }
-            return Request.CreateResponse(HttpStatusCode.OK, _CompanyCoordinatesModel);
+            catch (Exception)
+            {
+                _Response.Flag = "false";
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, _Response);
         }
 
-
+        #endregion
     }
 }

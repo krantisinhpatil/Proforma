@@ -12,7 +12,7 @@ namespace Proforma.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Pro_ProExclusive
+    public partial class ProExclusive
     {
         public int ProExclusiveId { get; set; }
         public int CompanyId { get; set; }

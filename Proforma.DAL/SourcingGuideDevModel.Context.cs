@@ -46,7 +46,7 @@ namespace Proforma.DAL
         public virtual DbSet<UserFavorite> UserFavorites { get; set; }
         public virtual DbSet<UserNotification> UserNotifications { get; set; }
         public virtual DbSet<CompanyCategory> CompanyCategories { get; set; }
-        public virtual DbSet<Pro_ProExclusive> Pro_ProExclusive { get; set; }
+        public virtual DbSet<ProExclusive> ProExclusives { get; set; }
     
         public virtual ObjectResult<Pro_GetCompanies_Result> Pro_GetCompanies(Nullable<int> categoryID, string companyName, string partnerType, string status, Nullable<int> pageNo, Nullable<int> pageSize, string sortColumn, string sortOrder)
         {

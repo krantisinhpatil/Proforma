@@ -38,7 +38,7 @@
                             <input type="hidden" id="SortColumnComapny" value="CompanyName" />
                         </li>
                         @*<li><a onclick="fnSortCompanies(this);">Description<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a></li>
-                        <li><a onclick="fnSortCompanies(this);">PLP Category<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a></li>*@
+                            <li><a onclick="fnSortCompanies(this);">PLP Category<span class="glyphicon glyphicon-sort" aria-hidden="true"></span></a></li>*@
                         <li>Description</li>
                         <li>PLP Category</li>
 
@@ -67,7 +67,7 @@
                                         <a href="javascript:void(0);" class="aproved-btn">Approve</a>
                                     }
                                 </li>
-                                
+
                             </ul>
                         </li>
                     }
@@ -89,17 +89,16 @@
     @*<div role="tabpanel" class="tab-pane" id="plp-edit">*@
     <div id="PLPCompanyInfo" style="display:none;">
         <form id="frmPLPCompanyInfo" method="post">
-            <div class="save-approve-wrap">
-                <div class="field-group save-btn-wrap">
-                    <input type="button" id="btnSavePLPCompanyInfo" name="" value="" class="save-icon-btn">
-                    <span>Save Changes and Approve</span>
-                </div>
+            <div class="field-group" style="float:left; width:100%;">
+                <input type="button" id="btnSavePLPCompanyInfo" name="" value="Save Changes and Approve" class="btn-save-icon">
+                <input type="button" id="btnBackToPLPList" name="" value="Back to PLP List" class="btn-back-icon">
+
             </div>
             <div class="general-info-wrap padding-btn-0">
                 <ul class="general-info-from-wrap">
                     <li>
                         <div class="field-group file-upload">
-                            <input type="file" id="fileUpload1" name="fileUpload1" accept="image/*" onchange="readURL(this);" />                            
+                            <input type="file" id="fileUpload1" name="fileUpload1" accept="image/*" onchange="readURL(this);" />
                             <img id="ImgcompanyLogo">
                             <input type="hidden" id="CompanyLogo" name="CompanyLogo" />
                             <a href="javascript:void(0);" class="upload-logo">Upload logo</a>
